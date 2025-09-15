@@ -2,6 +2,9 @@
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 
+Route::get("/", function(){
+    return redirect()->route("telaLogin");
+});
 
 Route::get("user/login", [UsuarioController::class, 'telaLogin'])->name("telaLogin");
 Route::get('user/cadastro', [UsuarioController::class, 'telaCadastro'])->name('telaCadastro');
