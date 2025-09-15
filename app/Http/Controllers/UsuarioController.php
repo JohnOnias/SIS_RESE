@@ -14,6 +14,16 @@ class UsuarioController extends Controller
         return view('user.register'); // crie a view user/cadastro.blade.php
     }
 
+     // Tela de login
+    public function telaLogin()
+    {
+        return view('user.login'); // crie a view user/login.blade.php
+    }
+
+    public function home(){
+        return view('user.index');
+    }
+
     // Salvar cadastro
     public function cadastrar(Request $request)
     {
@@ -34,17 +44,13 @@ class UsuarioController extends Controller
             'senha_usuario' => Hash::make($request->senha_usuario), // hash da senha
         ]);
 
-        return redirect()->route('telaLogin')->with('success', 'Cadastro realizado com sucesso!');
+        return redirect()->route('telaCadastro')->with('success', 'Cadastro realizado com sucesso!');
     }
 
-    // Tela de login
-    public function telaLogin()
-    {
-        return view('user.login'); // crie a view user/login.blade.php
-    }
+   
 
 
-    public function login(Request $request)
+    public function verificar(Request $request)
     {
         $request->validate([
             'email' => 'required|email',
@@ -55,10 +61,10 @@ class UsuarioController extends Controller
 
         if ($usuario && Hash::check($request->senha, $usuario->senha_usuario)) {
             // Login bem-sucedido, exemplo simples com session
-            session(['usuario_id' => $usuario->id_usuario, 'usuario_nome' => $usuario->nome_usuario]);
-            return redirect('/dashboard'); // redirecionar para a área logada
+            // session(['usuario_id' => $usuario->id_usuario, 'usuario_nome' => $usuario->nome_usuario]);
+            return redirect()->route('home'); // redirecionar para a área logada
         }
 
-        return back()->withErrors(['email' => 'Credenciais inválidas']);
+        return redirect()->route('telaLogin')->with('error', "Email ou senha incompatível");
     }
 }

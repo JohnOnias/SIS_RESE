@@ -6,12 +6,11 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
    <!-- Auth Section -->
-    @if(session('erro'))
+    @if(session('error'))
     <div class="alert alert-danger">
-        {{ session('erro') }}
+        {{ session('error') }}
     </div>
-    @else 
-        redirect()->{{route('index')}}
+
     @endif
 
     @section('content')

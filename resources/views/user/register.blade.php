@@ -72,7 +72,7 @@
             <div class="card shadow rounded-4 mx-auto" style="max-width: 500px;">
                 <div class="card-body">
                     <!-- Register Form -->
-                    <form id="register-form" action="{{route('cadastrarUsuario')}}" method="POST" >
+                    <form id="register-form"  method="POST" >
                         @csrf
                         <h2 class="h5 mb-4 fw-bold text-center">Crie sua conta</h2>
 
