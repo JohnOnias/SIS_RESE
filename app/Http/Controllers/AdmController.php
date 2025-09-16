@@ -27,7 +27,7 @@ class AdmController extends Controller
             'nome_equipamento' => $request->nome_equipamento, 
             'descricao_equipamento' => $request->descricao_equipamento, 
             'quantidade_equipamento' => $request->quantidade_equipamento, 
-            'quantidade_disponivel_equipamento' => $request->quantidade_disponivel_equipamento,
+            'quantidade_disponivel_equipamento' => $request->quantidade_equipamento,
 
         ]);
         return redirect()->route('adm')->with('success', 'Cadastro realizado com sucesso!');

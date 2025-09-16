@@ -6,7 +6,7 @@
 
 <h1>cadastrar equipamento teste</h1>
     
-<form method='POST' id="login-form">
+<form method='POST' action="{{route('insertEquipamento')}}" id="login-form">
     @csrf
     <h2 class="h5 mb-4 fw-bold text-center">Cadastro de Equipamento</h2>
     
