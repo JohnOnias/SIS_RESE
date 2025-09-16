@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('responsavel', function (Blueprint $table) {
             $table->id();
             $table->string('nome_responsavel');
+            $table->string('matricula_usuario')->unique(); 
             $table->string("cargo");
             $table->timestamps();
         });

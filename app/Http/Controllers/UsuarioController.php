@@ -62,7 +62,9 @@ class UsuarioController extends Controller
         if ($usuario && Hash::check($request->senha, $usuario->senha_usuario)) {
             // Login bem-sucedido, exemplo simples com session
             // session(['usuario_id' => $usuario->id_usuario, 'usuario_nome' => $usuario->nome_usuario]);
+
             return redirect()->route('home'); // redirecionar para a área logada
+            
         }
 
         return redirect()->route('telaLogin')->with('error', "Email ou senha incompatível");
