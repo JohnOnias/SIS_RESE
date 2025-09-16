@@ -7,5 +7,17 @@
 </head>
 <body>
     <h1>Usuário entrou com sucesso</h1>
+
+    {{session('id_usuario')}}
+    {{session('nome_usuario')}}
+
+    <ul>
+    @foreach($equipamentos as $equipamento)
+        <li>{{$equipamento->nome_equipamento}}</li>
+    @endforeach
+    </ul>
+    
+    
+
 </body>
 </html>

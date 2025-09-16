@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nome_equipamento');
             $table->mediumText('descricao_equipamento');
             $table->integer('quantidade_equipamento');
-             $table->integer('quantidade_disponivel_equipamento');
+            $table->integer('quantidade_disponivel_equipamento');
             $table->timestamps();
         });
     }
