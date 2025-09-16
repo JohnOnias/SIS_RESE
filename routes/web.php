@@ -22,7 +22,8 @@ Route::get("adm/home", [AdmController::class, 'telaAdm'])->name('adm');
 
 // rotas post
 
-Route::post("adm/home", [AdmController::class], 'inserirEquipamento')->name('insertEquipamento'); 
+
+Route::post('/adm/inserir', [AdmController::class, 'inserirEquipamento'])->name('insertEquipamento');
 Route::post('user/cadastro', [UsuarioController::class, 'cadastrar'])->name('cadastrarUsuario');
 Route::post("user/login", [UsuarioController::class, 'verificar']);
 Route::post('user/home', [UsuarioController::class, 'reservarEquipamento'])->name('reservarEquipamento');
