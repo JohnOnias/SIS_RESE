@@ -10,7 +10,7 @@
                 <img src="https://ifce.edu.br/prpi/documentos-1/semic/2017/logo-ifce-horizontal.png" alt="IFCE Logo" class="me-3" style="height:90px">
                 <div>
                     <!-- <h1 class="h4 fw-bold">IFCE Campus Cedro</h1> -->
-                    <p class="mb-0 text-white-50">Sistema de Reservas Esportivas</p>
+                    <p class="mb-0 text-white-50">Sistema de Reservas Esportivas IFCE </p>
                 </div>
             </div>
     
