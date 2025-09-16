@@ -14,6 +14,7 @@ class Usuario extends Model
 
    
     protected $fillable = [
+        'id',
         'nome_usuario',
         'email_usuario',
         'matricula_usuario',

@@ -14,11 +14,12 @@ return new class extends Migration
         Schema::create('reservas', function (Blueprint $table) {
             $table->id();
             // chaves estrangeiras 
-                    $table->foreignId('usuario_id')->constrained('usuarios')->onDelete('cascade'); 
-                    $table->foreignId('equipamento_id')->constrained('equipamentos')->onDelete('cascade'); 
+            $table->foreignId('usuario_id')->constrained('usuarios')->onDelete('cascade'); 
+            $table->foreignId('equipamento_id')->constrained('equipamentos')->onDelete('cascade'); 
             $table->dateTime('data_reserva'); 
             $table->dateTime('data_inicio');  
             $table->dateTime('data_fim');  
+            $table->enum("status", ['Pendente', 'Aprovado', 'Reprovado']);
             $table->timestamps();
             
         });

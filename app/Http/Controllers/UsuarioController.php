@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Usuario;
 use Illuminate\Support\Facades\Hash;
 
+session_start();
+
 class UsuarioController extends Controller
 {
 
@@ -35,7 +37,7 @@ class UsuarioController extends Controller
             'senha_usuario' => 'required|string|min:6|confirmed', // campo senha + confirmação
         ]);
 
-        Usuario::create([
+        $usuario = Usuario::create([
             'nome_usuario' => $request->nome_usuario,
             'email_usuario' => $request->email_usuario,
             'matricula_usuario' => $request->matricula_usuario, 
@@ -44,7 +46,16 @@ class UsuarioController extends Controller
             'senha_usuario' => Hash::make($request->senha_usuario), // hash da senha
         ]);
 
-        return redirect()->route('telaCadastro')->with('success', 'Cadastro realizado com sucesso!');
+        $dados = $usuario->only(['id', 'nome_usuario']);
+
+        $nome_usuario = $dados['nome_usuario'];
+        $id_usuario = $dados['id'];
+
+
+        $request->session()->put('id_usuario', $id_usuario);
+        $request->session()->put('nome_usuario', $nome_usuario);
+
+        return redirect()->route('home');
     }
 
    
@@ -57,14 +68,37 @@ class UsuarioController extends Controller
             'senha' => 'required|string',
         ]);
 
-        $usuario = Usuario::where('email_usuario', $request->email)->first();
+        $usuario = Usuario::where('email_usuario', $request->email)
+                    ->first();
 
         if ($usuario && Hash::check($request->senha, $usuario->senha_usuario)) {
-            // Login bem-sucedido, exemplo simples com session
-            // session(['usuario_id' => $usuario->id_usuario, 'usuario_nome' => $usuario->nome_usuario]);
+        
+            //salvando a sessão usuário
+            $request->session()->put('id_usuario', $usuario->id);
+            $request->session()->put('nome_usuario', $usuario->nome_usuario);
+
+
+
             return redirect()->route('home'); // redirecionar para a área logada
         }
 
         return redirect()->route('telaLogin')->with('error', "Email ou senha incompatível");
     }
+
+    public function reservarEquipamento(Request $request){
+
+
+        $request->validate([
+            'equipamento_id' => 'required',
+            'data_reserva' => 'required',
+            'data_inicio' => 'required',
+            'data_fim' => 'required',
+        ]);
+
+
+
+        
+    }
+
+
 }
