@@ -107,15 +107,15 @@
                         <div>
                             <p class="text-gray-500 text-sm">Reservas essa Semana</p>
 
-                            <p class="text-2xl font-bold">{{$qtd_reservas}}</p>
+                            <p class="text-2xl font-bold">{{$qtd_reservas ?? 0}}</p>
                         </div>
                         <div>
                             <p class="text-gray-500 text-sm">Penalidades Ativas</p>
-                            <p class="text-2xl font-bold">{{$qtd_penalidades_ativas}}</p>
+                            <p class="text-2xl font-bold">{{$qtd_penalidades_ativas ?? 0}}</p>
                         </div>
                         <div>
                             <p class="text-gray-500 text-sm">Usuários Bloqueados</p>
-                            <p class="text-2xl font-bold">{{$qtd_tipo_penalidade}}</p>
+                            <p class="text-2xl font-bold">{{$qtd_tipo_penalidade ?? 0}}</p>
                         </div>
                     </div>
                 </div>
@@ -145,7 +145,7 @@
                                 <div class="flex justify-between items-start">
                                     <div>
                                         <p class="text-blue-600 font-medium">Total Reservas</p>
-                                        <p class="text-3xl font-bold mt-2">{{ $qtd_reservas_mes_andamento }}</p>
+                                        <p class="text-3xl font-bold mt-2">{{$qtd_reservas_mes_andamento ?? 0}}</p>
                                     </div>
                                     <div class="bg-blue-100 p-3 rounded-full">
                                         <i class="fas fa-calendar text-blue-600 text-xl"></i>
@@ -156,7 +156,7 @@
                                 <div class="flex justify-between items-start">
                                     <div>
                                         <p class="text-green-600 font-medium">Reservas Concluídas</p>
-                                        <p class="text-3xl font-bold mt-2">{{$qtd_reservas_mes_concluida}}</p>
+                                        <p class="text-3xl font-bold mt-2">{{$qtd_reservas_mes_concluida ?? 0}}</p>
                                         <!-- <p class="text-sm text-green-600 mt-1"><i class="fas fa-arrow-up mr-1"></i> 8% em relação ao mês passado</p> -->
                                     </div>
                                     <div class="bg-green-100 p-3 rounded-full">
@@ -168,7 +168,7 @@
                                 <div class="flex justify-between items-start">
                                     <div>
                                         <p class="text-red-600 font-medium">Cancelamentos</p>
-                                        <p class="text-3xl font-bold mt-2">{{$qtd_reservas_mes_cancelada}}</p>
+                                        <p class="text-3xl font-bold mt-2">{{$qtd_reservas_mes_cancelada ?? 0}}</p>
                                        <!-- <p class="text-sm text-red-600 mt-1"><i class="fas fa-arrow-down mr-1"></i> 2% em relação ao mês passado</p>-->
                                     </div>
                                     <div class="bg-red-100 p-3 rounded-full">
@@ -188,7 +188,7 @@
                                             <i class="fas fa-calendar-plus text-green-600"></i>
                                         </div>
                                         <div>
-                                            @if($ultima_reserva)
+                                            @if($ultima_reserva ?? 0)
                                             <p class="font-medium">Nova reserva realizada</p>
                                             <p class="text-sm text-gray-500">{{$ultima_reserva->nome_usuario}} reservou {{$ultima_reserva->nome_equipamento}} para {{$ultima_reserva->data_reserva}}</p>
                                             <!-- <p class="text-xs text-gray-400">10 minutos atrás</p> -->
@@ -205,7 +205,7 @@
                                             <i class="fas fa-ban text-red-600"></i>
                                         </div>
                                         <div>
-                                            @if($ultima_penalidade)
+                                            @if($ultima_penalidade ?? 0)
                                             <p class="font-medium">Penalidade aplicada</p>
                                             <p class="text-sm text-gray-500">{{$ultima_penalidade->nome_usuario}} recebeu {{$ultima_penalidade->tipo_penalidade}} por
                                                  {{$ultima_penalidade->tipo_punicao}}</p>
@@ -222,7 +222,7 @@
                                             <i class="fas fa-user-shield text-blue-600"></i>
                                         </div>
                                         <div>
-                                            @if($ultimo_bloqueado)
+                                            @if($ultimo_bloqueado ?? 0)
                                             <p class="font-medium">Usuário bloqueado</p>
                                             <p class="text-sm text-gray-500">{{$ultimo_bloqueado->nome_usuario}} recebeu {{$ultimo_bloqueado->tipo_penalidade}} por
                                                  {{$ultimo_bloqueado->tipo_punicao}}
@@ -245,7 +245,7 @@
                 </div>
 
                 <!-- Reservations Tab -->
-                <div id="reservations" class="tab-content">
+                <!-- <div id="reservations" class="tab-content">
                     <div class="bg-white rounded-lg shadow-md p-6">
                         <div class="flex justify-between items-center mb-6">
                             <h2 class="text-2xl font-bold">Gerenciamento de Reservas</h2>
@@ -258,114 +258,70 @@
                                     <i class="fas fa-plus mr-2"></i> Nova Reserva
                                 </button>
                             </div>
-                        </div>
+                        </div> -->
 
                         <!-- Filters -->
-                        <div class="bg-gray-50 rounded-lg p-4 mb-6">
-                            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Status</label>
-                                    <select class="w-full border border-gray-300 rounded px-3 py-2 text-sm">
-                                        <option>Todos</option>
-                                        <option>Confirmadas</option>
-                                        <option>Pendentes</option>
-                                        <option>Canceladas</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Esporte</label>
-                                    <select class="w-full border border-gray-300 rounded px-3 py-2 text-sm">
-                                        <option>Todos</option>
-                                        <option>Futsal</option>
-                                        <option>Ping Pong</option>
-                                        <option>Vôlei</option>
-                                        <option>Basquete</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Data Inicial</label>
-                                    <input type="date" class="w-full border border-gray-300 rounded px-3 py-2 text-sm">
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Data Final</label>
-                                    <input type="date" class="w-full border border-gray-300 rounded px-3 py-2 text-sm">
-                                </div>
-                            </div>
-                        </div>
+                       @php
+    $status = $status ?? request()->input('status', 'todas');
+@endphp
 
-                        <!-- Reservations Table -->
-                        <div class="overflow-x-auto">
-                            <table class="min-w-full divide-y divide-gray-200">
-                                <thead class="bg-gray-50">
-                                    <tr>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Usuário</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Esporte</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Data/Horário</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ações</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="bg-white divide-y divide-gray-200">
-                                    <tr class="reservation-row">
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">#RES-001</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">João Silva</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Futsal</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">15/07/2023 14:00-15:00</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <span class="px-2 py-1 text-xs rounded-full status-confirmed">Confirmada</span>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            <button class="text-green-600 hover:text-green-900 mr-3"><i class="fas fa-eye"></i></button>
-                                            <button class="text-blue-600 hover:text-blue-900 mr-3"><i class="fas fa-edit"></i></button>
-                                            <button class="text-red-600 hover:text-red-900"><i class="fas fa-trash"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr class="reservation-row">
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">#RES-002</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Maria Oliveira</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Ping Pong</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">16/07/2023 10:00-11:00</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <span class="px-2 py-1 text-xs rounded-full status-pending">Pendente</span>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            <button class="text-green-600 hover:text-green-900 mr-3"><i class="fas fa-eye"></i></button>
-                                            <button class="text-blue-600 hover:text-blue-900 mr-3"><i class="fas fa-edit"></i></button>
-                                            <button class="text-red-600 hover:text-red-900"><i class="fas fa-trash"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr class="reservation-row">
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">#RES-003</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Carlos Mendes</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Vôlei</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">14/07/2023 16:00-17:00</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <span class="px-2 py-1 text-xs rounded-full status-cancelled">Cancelada</span>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            <button class="text-green-600 hover:text-green-900 mr-3"><i class="fas fa-eye"></i></button>
-                                            <button class="text-blue-600 hover:text-blue-900 mr-3"><i class="fas fa-edit"></i></button>
-                                            <button class="text-red-600 hover:text-red-900"><i class="fas fa-trash"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr class="reservation-row">
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">#RES-004</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Ana Souza</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Basquete</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">13/07/2023 18:00-19:00</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <span class="px-2 py-1 text-xs rounded-full status-completed">Concluída</span>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            <button class="text-green-600 hover:text-green-900 mr-3"><i class="fas fa-eye"></i></button>
-                                            <button class="text-blue-600 hover:text-blue-900 mr-3"><i class="fas fa-edit"></i></button>
-                                            <button class="text-red-600 hover:text-red-900"><i class="fas fa-trash"></i></button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+<div class="bg-gray-50 rounded-lg p-4 mb-6">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <form method="GET" action="{{ route('reservas_geral') }}">
+            <select name="status" class="w-full border border-gray-300 rounded px-3 py-2 text-sm" onchange="this.form.submit()">
+                <option value="todas" {{ $status == 'todas' ? 'selected' : '' }}>Todas</option>
+                <option value="Pendente" {{ $status == 'Pendente' ? 'selected' : '' }}>Pendente</option>
+                <option value="Aprovado" {{ $status == 'Aprovado' ? 'selected' : '' }}>Aprovado</option>
+                <option value="Reprovado" {{ $status == 'Reprovado' ? 'selected' : '' }}>Reprovado</option>
+                 <option value="Em Andamento" {{ $status == 'Em Andamento' ? 'selected' : '' }}>Em Andamento</option>
+                  <option value="Concluida" {{ $status == 'Concluida' ? 'selected' : '' }}>Concluida</option>
+            </select>
+        </form>
+    </div>
+</div>
+
+<!-- Reservations Table -->
+<div class="overflow-x-auto">
+    <table class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-gray-50">
+            <tr>
+                <th class="px-6 py-3 ...">ID</th>
+                <th class="px-6 py-3 ...">Usuário</th>
+                <th class="px-6 py-3 ...">Esporte</th>
+                <th class="px-6 py-3 ...">Data/Horário</th>
+                <th class="px-6 py-3 ...">Status</th>
+                <th class="px-6 py-3 ...">Ações</th>
+            </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+            @if($reservas->count())
+                @foreach($reservas as $reserva)
+                    <tr class="reservation-row">
+                        <td class="px-6 py-4 text-sm font-medium">{{ $reserva->usuario->id ?? $reserva->usuario_id }}</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">{{ $reserva->usuario->nome_usuario ?? '—' }}</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">{{ $reserva->equipamento->nome_equipamento ?? '—' }}</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">{{ $reserva->data_reserva }}</td>
+                        <td class="px-6 py-4">
+                            <span class="px-2 py-1 text-xs rounded-full status-{{ $reserva->status }}">
+                                {{ $reserva->status }}
+                            </span>
+                        </td>
+                        <td class="px-6 py-4 text-sm text-gray-500">
+                            <button class="text-green-600 hover:text-green-900 mr-3"><i class="fas fa-eye"></i></button>
+                            <button class="text-blue-600 hover:text-blue-900 mr-3"><i class="fas fa-edit"></i></button>
+                            <button class="text-red-600 hover:text-red-900"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                @endforeach
+            @else
+                <tr>
+                    <td colspan="6" class="px-6 py-4 text-center text-gray-500">Nenhuma reserva encontrada</td>
+                </tr>
+            @endif
+        </tbody>
+    </table>
+</div>
+
 
                         <!-- Pagination -->
                         <div class="flex items-center justify-between mt-6">
@@ -432,13 +388,33 @@
                             </div>
                         </div>
 
-                        <!-- History Table -->
-                        <div class="overflow-x-auto">
-                            <table class="min-w-full divide-y divide-gray-200">
-                                <thead class="bg-gray-50">
-                                    <tr>
-                                  
+    
 </body>
 </html>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const buttons = document.querySelectorAll(".tab-button");
+    const contents = document.querySelectorAll(".tab-content");
+
+    buttons.forEach(button => {
+        button.addEventListener("click", () => {
+            const target = button.getAttribute("data-tab");
+
+            // Esconde todas as abas
+            contents.forEach(c => c.classList.remove("active"));
+
+            // Remove destaque de todos os botões
+            buttons.forEach(b => b.classList.remove("bg-green-100", "text-green-800"));
+
+            // Mostra a aba clicada
+            document.getElementById(target).classList.add("active");
+
+            // Destaca o botão clicado
+            button.classList.add("bg-green-100", "text-green-800");
+        });
+    });
+});
+</script>
+
 
 @endsection

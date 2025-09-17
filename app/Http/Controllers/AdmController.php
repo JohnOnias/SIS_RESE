@@ -17,8 +17,34 @@ class AdmController extends Controller
     }
 
 
-    public function dashBoard(){
+ public function reservas_geral(Request $request)
+{     $status = $request->query('status', 'todas');
+    $query = DB::table('reservas')
+        ->join('usuarios', 'reservas.usuario_id', '=', 'usuarios.id')
+        ->join('equipamentos', 'reservas.equipamento_id', '=', 'equipamentos.id')
+        ->select(
+            'reservas.status as status',
+            'reservas.usuario_id', 
+            'usuarios.nome_usuario',
+            'equipamentos.nome_equipamento', 
+            'reservas.data_reserva'
+        );
+    if ($status !== 'todas') {
+        $query->where('reservas.status', $status);
+    }
 
+    $reservas = $query->get();
+
+    // Passe ambas as variáveis para a view
+    return view('adm.dashboard', compact(
+        'reservas',
+        'status'
+    ));
+}
+
+
+
+    public function dashBoard(){
         // retorna as reservas feitas essa semana
        $inicio_semana = Carbon::now()->startOfWeek(); // segunda-feira
         $fim_semana    = Carbon::now()->endOfWeek();   // domingo
@@ -95,13 +121,19 @@ class AdmController extends Controller
                     ->orderBy('punicoes.data_punicao', 'desc')
                     ->first(); 
 
-        return view(
-                'adm.dashboard', compact('reservas', 'qtd_reservas', 'qtd_penalidades_ativas',
-                'qtd_tipo_penalidade', 'ultima_reserva', 'qtd_reservas_mes_andamento', 'qtd_reservas_mes_concluida',
-                'qtd_reservas_mes_cancelada', 'ultima_penalidade', 'ultimo_bloqueado'
-            
-        
-            ));
+        return view('adm.dashboard', [
+    'reservas' => $reservas,
+    'status' => $status,
+    'qtd_reservas' => 0,
+    'qtd_penalidades_ativas' => 0,
+    'qtd_tipo_penalidade' => 0,
+    'ultima_reserva' => null,
+    'qtd_reservas_mes_andamento' => 0,
+    'qtd_reservas_mes_concluida' => 0,
+    'qtd_reservas_mes_cancelada' => 0,
+    'ultima_penalidade' => null,
+    'ultimo_bloqueado' => null,
+]);
 
     }
 
