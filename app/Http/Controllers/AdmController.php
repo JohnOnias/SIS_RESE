@@ -67,7 +67,7 @@ class AdmController extends Controller
                 $ultima_reserva = DB::table('usuarios')
                 ->join('reservas', 'usuarios.id', '=', 'reservas.usuario_id')
                 ->join('equipamentos', 'reservas.equipamento_id', '=', 'equipamentos.id')
-                ->where('reservas.status', 'Aprovado')
+                ->where('reservas.status', 'Pendente')
                 ->select(
                     'usuarios.nome_usuario as nome_usuario',
                     'reservas.data_reserva as data_reserva',
