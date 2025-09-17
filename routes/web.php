@@ -30,7 +30,7 @@ Route::post('user/cadastro', [UsuarioController::class, 'cadastrar'])->name('cad
 Route::post("user/login", [UsuarioController::class, 'verificar']);
 Route::post('user/home', [UsuarioController::class, 'reservarEquipamento'])->name('reservarEquipamento');
 
-
+Route::post('/reservar', [App\Http\Controllers\ReservaController::class, 'fazerReserva'])->name('reservar');
 
 
 
