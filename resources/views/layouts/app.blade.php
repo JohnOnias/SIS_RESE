@@ -4,7 +4,7 @@
 <nav class="navbar navbar-dark bg-success shadow-sm mb-4">
   <div class="container d-flex align-items-center justify-content-center">
     <img src="https://ifce.edu.br/prpi/documentos-1/semic/2017/logo-ifce-horizontal.png" alt="IFCE Logo" style="height:60px;" class="me-3">
-    <span class="fw-bold fs-4 text-white text-center">Sistema de Reservas Esportivas IFCE</span>
+    <span class="fw-bold fs-4 text-white text-center">SISRESE IFCE</span>
   </div>
 </nav>
 
