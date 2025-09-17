@@ -113,13 +113,7 @@
       <section id="reservations" class="tab-content card shadow-sm p-4">
         <div class="d-flex justify-content-between align-items-center mb-4">
           <h2 class="h4 mb-0">Gerenciamento de Reservas</h2>
-          <div class="d-flex gap-2">
-            <div class="position-relative">
-              <input type="text" placeholder="Buscar reservas..." class="form-control ps-5" />
-              <i class="fas fa-search position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
-            </div>
-            
-          </div>
+
         </div>
 
         <!-- FORMULÁRIO DE RESERVA DE EQUIPAMENTO-->
@@ -164,26 +158,28 @@
               <tr>
                 
                 <th>Esporte</th>
-                <th>Data de Entrega</th>
-                <th>Data de Devolução</th>
+                <th>Entrada</th>
+                <th>Devolução</th>
                 <th>Status</th>
               </tr>
             </thead>
             <tbody>
-              <tr class="reservation-row">
                 @foreach($dados as $dado)
-                <td>{{$dado->equipamento}}</td>
-                <td>{{$dado->data_inicio}}</td>
-                <td>{{$dado->data_fim}}</td>
-                <td><span class="badge bg-success text-dark">{{$dado->status}}</span></td>
-                <td>
-                  <button class="btn btn-sm btn-success me-1"><i class="fas fa-eye"></i></button>
-                  <button class="btn btn-sm btn-primary me-1"><i class="fas fa-edit"></i></button>
-                  <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
-                </td>
+                <tr class="reservation-row">
+                  <td>{{$dado->equipamento}}</td>
+                  <td>{{date('d/m/Y H:i:s', strtotime($dado->data_inicio))}}</td>
+                  <td>{{date('d/m/Y H:i:s', strtotime($dado->data_fim))}}</td>
 
-                @endforeach
-              </tr>
+                  @if($dado->status =='Aprovado')
+                    <td><span class="badge bg-success text-dark">{{$dado->status}}</span></td>
+                  @elseif($dado->status == 'Reprovado')
+                    <td><span class="badge bg-danger text-dark">{{$dado->status}}</span></td>
+                  @else
+                    <td><span class="badge bg-warning text-dark">{{$dado->status}}</span></td>
+                  @endif
+
+                  @endforeach
+                </tr>
             </tbody>
           </table>
         </div>

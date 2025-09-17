@@ -8,5 +8,4 @@ use Illuminate\Http\Request;
 class EquipamentoController extends Controller
 {
     
-    
 }

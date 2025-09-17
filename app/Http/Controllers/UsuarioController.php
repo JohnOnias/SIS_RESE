@@ -103,6 +103,7 @@ class UsuarioController extends Controller
         $dataInicio = $request->data_inicio;
         $dataFim = $request->data_fim;
 
+
         $reserva = Reserva::create([
             'usuario_id' => $usuarioId,
             'equipamento_id' => $equipamentoId,
