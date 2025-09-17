@@ -44,7 +44,8 @@ class AdmController extends Controller
 
 
 
-    public function dashBoard(){
+    public function dashBoard(Request $request){
+         $status = $request->query('status', 'todas');
         // retorna as reservas feitas essa semana
        $inicio_semana = Carbon::now()->startOfWeek(); // segunda-feira
         $fim_semana    = Carbon::now()->endOfWeek();   // domingo
