@@ -1,11 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-
-
-
-<h1>cadastrar equipamento teste</h1>
-    
+<br>
+<br>
+<br>
 <form method='POST' action="{{route('insertEquipamento')}}" id="login-form">
     @csrf
     <h2 class="h5 mb-4 fw-bold text-center">Cadastro de Equipamento</h2>
@@ -38,7 +36,8 @@
         <i class="fas fa-save me-2"></i> Cadastrar
     </button>
 </form>
-
-
+<br>
+<br>
+<br>
 
 @endsection

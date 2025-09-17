@@ -17,10 +17,12 @@ Route::get('user/cadastro', [UsuarioController::class, 'telaCadastro'])->name('t
 Route::get("user/home", [UsuarioController::class, 'home'])->name('home');
 Route::get("user/home", [HomeController::class, 'index'])->name('home');
 // Route::get("user/home", [UsuarioController::class, 'listarEquipamentosReservados'])->name('reservas');
-Route::get("adm/home", [AdmController::class, 'telaAdm'])->name('adm'); 
+Route::get("adm/insert", [AdmController::class, 'telaAdm'])->name('adm'); 
+Route::get("adm/dashboard", [AdmController::class, 'dashboard'])->name('dash'); 
 
 
 // rotas post
+
 
 
 Route::post('/adm/inserir', [AdmController::class, 'inserirEquipamento'])->name('insertEquipamento');

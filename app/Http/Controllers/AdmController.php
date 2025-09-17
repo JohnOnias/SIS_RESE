@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\Adm;
 
 
@@ -11,8 +12,38 @@ class AdmController extends Controller
 {
 
     public function telaAdm(){
-        return view('adm.adm');
+        return view('adm.insert');
     }
+
+
+    public function dashBoard(){
+        // retorna as reservas feitas hoje
+        $reservas_de_hoje = DB::table('reservas')->where('status', 'Aprovado')->whereDate('data_reserva', today())->get();
+        $qtd_reservas_hoje = $reservas_de_hoje->count(); 
+        // retorna a quantidade de puniçoes ativas
+        $penalidades_ativas = DB::table('punicoes')->where('status', 'Ativa'); 
+        $qtd_penalidades_ativas = $penalidades_ativas->count(); 
+        // retorna a quantidade de banimentos
+        $tipo_penalidade = DB::table('punicoes')->where('tipo_penalidade', 'Banimento'); 
+        $qtd_tipo_penalidade = $tipo_penalidade->count(); 
+        // retorna a ultima reserva feita 
+                $ultima_reserva = DB::table('usuarios')
+                ->join('reservas', 'usuarios.id', '=', 'reservas.usuario_id')
+                ->join('equipamentos', 'reservas.equipamento_id', '=', 'equipamentos.id')
+                ->where('reservas.status', 'Aprovado')
+                ->select(
+                    'usuarios.nome_usuario as nome_usuario',
+                    'reservas.data_reserva as data_reserva',
+                    'equipamentos.nome_equipamento as nome_equipamento'
+                )->orderBy('reservas.data_reserva', 'desc')
+                ->first();
+                        
+
+        return view('adm.dashboard', compact('reservas_de_hoje', 'qtd_reservas_hoje', 'qtd_penalidades_ativas', 'qtd_tipo_penalidade', 'ultima_reserva'));
+
+    }
+
+
     public function inserirEquipamento(Request $request){
 
 
@@ -33,4 +64,5 @@ class AdmController extends Controller
         return redirect()->route('adm')->with('success', 'Cadastro realizado com sucesso!');
     
     }
+
 }
