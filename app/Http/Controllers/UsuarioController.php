@@ -103,6 +103,16 @@ class UsuarioController extends Controller
         $dataInicio = $request->data_inicio;
         $dataFim = $request->data_fim;
 
+        //pega o horário atual
+        $dataHoraAtual = strtotime(date("Y-m-d H:i:s"));
+        $dataInicioTimestamp = strtotime($dataInicio);
+        $dataFimTimestamp = strtotime($dataFim);
+
+        if ($dataHoraAtual > $dataInicioTimestamp) {
+            return redirect()->route('home')->with('error', "Horário inicial incompatível");
+        } else if ($dataHoraAtual > $dataFimTimestamp) {
+            return redirect()->route('home')->with('error', "Horário final incompatível");
+        }
 
         $reserva = Reserva::create([
             'usuario_id' => $usuarioId,
@@ -112,14 +122,9 @@ class UsuarioController extends Controller
             'data_fim' => $dataFim,
             'status'=> 'Pendente'
         ]);
+        
 
-        $dataHoraAtual = date("H:i:s");
-
-
-
-        if(!$reserva){
-           return redirect()->route('home')->with('error', "Equipamento não foi reservado");
-        }
+    
 
         return redirect()->route('home')->with('success', "Equipamento reservado com sucesso");
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use App\Models\Adm;
 
@@ -17,9 +18,17 @@ class AdmController extends Controller
 
 
     public function dashBoard(){
+
         // retorna as reservas feitas hoje
-        $reservas_de_hoje = DB::table('reservas')->where('status', 'Aprovado')->whereDate('data_reserva', today())->get();
-        $qtd_reservas_hoje = $reservas_de_hoje->count(); 
+       $inicio_semana = Carbon::now()->startOfWeek(); // segunda-feira
+        $fim_semana    = Carbon::now()->endOfWeek();   // domingo
+
+        $reservas = DB::table('reservas')
+            ->where('status', 'Aprovado')
+            ->whereBetween('data_reserva', [$inicio_semana, $fim_semana])
+            ->get();
+        $qtd_reservas = $reservas->count();
+
         // retorna a quantidade de puniçoes ativas
         $penalidades_ativas = DB::table('punicoes')->where('status', 'Ativa'); 
         $qtd_penalidades_ativas = $penalidades_ativas->count(); 
@@ -39,7 +48,7 @@ class AdmController extends Controller
                 ->first();
                         
 
-        return view('adm.dashboard', compact('reservas_de_hoje', 'qtd_reservas_hoje', 'qtd_penalidades_ativas', 'qtd_tipo_penalidade', 'ultima_reserva'));
+        return view('adm.dashboard', compact('reservas', 'qtd_reservas', 'qtd_penalidades_ativas', 'qtd_tipo_penalidade', 'ultima_reserva'));
 
     }
 

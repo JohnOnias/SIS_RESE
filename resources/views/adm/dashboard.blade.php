@@ -105,9 +105,9 @@
                     <h3 class="text-lg font-semibold mb-4">Estatísticas Rápidas</h3>
                     <div class="space-y-4">
                         <div>
-                            <p class="text-gray-500 text-sm">Reservas Hoje</p>
+                            <p class="text-gray-500 text-sm">Reservas essa Semana</p>
 
-                            <p class="text-2xl font-bold">{{$qtd_reservas_hoje}}</p>
+                            <p class="text-2xl font-bold">{{$qtd_reservas}}</p>
                         </div>
                         <div>
                             <p class="text-gray-500 text-sm">Penalidades Ativas</p>
