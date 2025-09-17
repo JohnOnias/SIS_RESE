@@ -19,15 +19,43 @@ class AdmController extends Controller
 
     public function dashBoard(){
 
-        // retorna as reservas feitas hoje
+        // retorna as reservas feitas essa semana
        $inicio_semana = Carbon::now()->startOfWeek(); // segunda-feira
         $fim_semana    = Carbon::now()->endOfWeek();   // domingo
 
         $reservas = DB::table('reservas')
-            ->where('status', 'Aprovado')
+            ->where('status', 'Pendente')
             ->whereBetween('data_reserva', [$inicio_semana, $fim_semana])
             ->get();
         $qtd_reservas = $reservas->count();
+
+
+
+        // quantidade de reservas desse mes em andamento
+        $mes_atual = Carbon::now()->month; // número do mês atual
+        $ano_atual = Carbon::now()->year;  // ano atual
+        $qtd_reservas_mes_andamento = DB::table('reservas')
+            ->where('status', 'Em Andamento') // opcional, se quiser só aprovadas
+            ->whereMonth('data_reserva', $mes_atual)
+            ->whereYear('data_reserva', $ano_atual)
+            ->count();
+             // quantidade de reservas desse mes concluidas
+        $mes_atual = Carbon::now()->month; // número do mês atual
+        $ano_atual = Carbon::now()->year;  // ano atual
+        $qtd_reservas_mes_concluida = DB::table('reservas')
+            ->where('status', 'Concluida') // opcional, se quiser só aprovadas
+            ->whereMonth('data_reserva', $mes_atual)
+            ->whereYear('data_reserva', $ano_atual)
+            ->count();
+              // quantidade de reservas desse mes canceladas
+        $mes_atual = Carbon::now()->month; // número do mês atual
+        $ano_atual = Carbon::now()->year;  // ano atual
+        $qtd_reservas_mes_cancelada = DB::table('reservas')
+            ->where('status', 'Reprovado') // opcional, se quiser só aprovadas
+            ->whereMonth('data_reserva', $mes_atual)
+            ->whereYear('data_reserva', $ano_atual)
+            ->count();
+
 
         // retorna a quantidade de puniçoes ativas
         $penalidades_ativas = DB::table('punicoes')->where('status', 'Ativa'); 
@@ -48,7 +76,32 @@ class AdmController extends Controller
                 ->first();
                         
 
-        return view('adm.dashboard', compact('reservas', 'qtd_reservas', 'qtd_penalidades_ativas', 'qtd_tipo_penalidade', 'ultima_reserva'));
+        // retorna o ultimo usuario penalizado 
+                    $ultima_penalidade = DB::table('punicoes')
+                    ->join('usuarios', 'punicoes.usuario_id', '=', 'usuarios.id')
+                    ->where('punicoes.status', 'Ativa')
+                    ->select('usuarios.nome_usuario as nome_usuario','punicoes.tipo_penalidade as tipo_penalidade',
+                    'punicoes.tipo_punicao as tipo_punicao')
+                    ->orderBy('punicoes.data_punicao', 'desc')
+                    ->first(); 
+
+                    // retorna o ultimo usuario bloqueado 
+                    $ultimo_bloqueado = DB::table('punicoes')
+                    ->join('usuarios', 'punicoes.usuario_id', '=', 'usuarios.id')
+                    ->where('punicoes.status', 'Ativa')
+                    ->where('punicoes.tipo_penalidade', 'Banimento')
+                    ->select('usuarios.nome_usuario as nome_usuario','punicoes.tipo_penalidade as tipo_penalidade',
+                    'punicoes.tipo_punicao as tipo_punicao')
+                    ->orderBy('punicoes.data_punicao', 'desc')
+                    ->first(); 
+
+        return view(
+                'adm.dashboard', compact('reservas', 'qtd_reservas', 'qtd_penalidades_ativas',
+                'qtd_tipo_penalidade', 'ultima_reserva', 'qtd_reservas_mes_andamento', 'qtd_reservas_mes_concluida',
+                'qtd_reservas_mes_cancelada', 'ultima_penalidade', 'ultimo_bloqueado'
+            
+        
+            ));
 
     }
 

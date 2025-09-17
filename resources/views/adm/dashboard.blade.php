@@ -129,13 +129,13 @@
                         <div class="flex justify-between items-center mb-6">
                             <h2 class="text-2xl font-bold">Visão Geral</h2>
                             <div class="flex items-center space-x-2">
-                                <span class="text-sm text-gray-500">Período:</span>
+                               <!-- <span class="text-sm text-gray-500">Período:</span>
                                 <select class="border border-gray-300 rounded px-3 py-1 text-sm">
                                     <option>Hoje</option>
                                     <option>Esta semana</option>
                                     <option selected>Este mês</option>
                                     <option>Este ano</option>
-                                </select>
+                                </select> -->
                             </div>
                         </div>
 
@@ -145,8 +145,7 @@
                                 <div class="flex justify-between items-start">
                                     <div>
                                         <p class="text-blue-600 font-medium">Total Reservas</p>
-                                        <p class="text-3xl font-bold mt-2">84</p>
-                                        <p class="text-sm text-blue-600 mt-1"><i class="fas fa-arrow-up mr-1"></i> 12% em relação ao mês passado</p>
+                                        <p class="text-3xl font-bold mt-2">{{ $qtd_reservas_mes_andamento }}</p>
                                     </div>
                                     <div class="bg-blue-100 p-3 rounded-full">
                                         <i class="fas fa-calendar text-blue-600 text-xl"></i>
@@ -157,8 +156,8 @@
                                 <div class="flex justify-between items-start">
                                     <div>
                                         <p class="text-green-600 font-medium">Reservas Concluídas</p>
-                                        <p class="text-3xl font-bold mt-2">72</p>
-                                        <p class="text-sm text-green-600 mt-1"><i class="fas fa-arrow-up mr-1"></i> 8% em relação ao mês passado</p>
+                                        <p class="text-3xl font-bold mt-2">{{$qtd_reservas_mes_concluida}}</p>
+                                        <!-- <p class="text-sm text-green-600 mt-1"><i class="fas fa-arrow-up mr-1"></i> 8% em relação ao mês passado</p> -->
                                     </div>
                                     <div class="bg-green-100 p-3 rounded-full">
                                         <i class="fas fa-check-circle text-green-600 text-xl"></i>
@@ -169,8 +168,8 @@
                                 <div class="flex justify-between items-start">
                                     <div>
                                         <p class="text-red-600 font-medium">Cancelamentos</p>
-                                        <p class="text-3xl font-bold mt-2">5</p>
-                                        <p class="text-sm text-red-600 mt-1"><i class="fas fa-arrow-down mr-1"></i> 2% em relação ao mês passado</p>
+                                        <p class="text-3xl font-bold mt-2">{{$qtd_reservas_mes_cancelada}}</p>
+                                       <!-- <p class="text-sm text-red-600 mt-1"><i class="fas fa-arrow-down mr-1"></i> 2% em relação ao mês passado</p>-->
                                     </div>
                                     <div class="bg-red-100 p-3 rounded-full">
                                         <i class="fas fa-times-circle text-red-600 text-xl"></i>
@@ -206,9 +205,16 @@
                                             <i class="fas fa-ban text-red-600"></i>
                                         </div>
                                         <div>
+                                            @if($ultima_penalidade)
                                             <p class="font-medium">Penalidade aplicada</p>
-                                            <p class="text-sm text-gray-500">Maria Oliveira recebeu suspensão por 7 dias por não comparecimento</p>
-                                            <p class="text-xs text-gray-400">1 hora atrás</p>
+                                            <p class="text-sm text-gray-500">{{$ultima_penalidade->nome_usuario}} recebeu {{$ultima_penalidade->tipo_penalidade}} por
+                                                 {{$ultima_penalidade->tipo_punicao}}</p>
+                                            @else
+                                             <p class="font-medium">Sem Penalidade Recente aplicada</p>
+                                            <p class="text-sm text-gray-500">-- sem penalidades --</p>
+
+                                            @endif
+                                            <!--<p class="text-xs text-gray-400">1 hora atrás</p> -->
                                         </div>
                                     </div>
                                     <div class="flex items-start">
@@ -216,9 +222,20 @@
                                             <i class="fas fa-user-shield text-blue-600"></i>
                                         </div>
                                         <div>
+                                            @if($ultimo_bloqueado)
                                             <p class="font-medium">Usuário bloqueado</p>
-                                            <p class="text-sm text-gray-500">Carlos Mendes foi bloqueado por violação repetida das regras</p>
-                                            <p class="text-xs text-gray-400">3 horas atrás</p>
+                                            <p class="text-sm text-gray-500">{{$ultimo_bloqueado->nome_usuario}} recebeu {{$ultimo_bloqueado->tipo_penalidade}} por
+                                                 {{$ultimo_bloqueado->tipo_punicao}}
+                                               </p>
+                                            <!--<p class="text-xs text-gray-400">3 horas atrás</p>-->
+                                            @else
+                                               <p class="font-medium">Nem um Usuário bloqueado</p>
+                                           <p class="text-sm text-gray-500">-- sem bloqueios recentes --
+                                               </p>
+                                               
+                                            <!--<p class="text-xs text-gray-400">3 horas atrás</p>-->
+
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -423,4 +440,5 @@
                                   
 </body>
 </html>
+
 @endsection

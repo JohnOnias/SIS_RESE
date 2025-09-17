@@ -19,7 +19,8 @@ return new class extends Migration
             $table->dateTime('data_reserva'); 
             $table->dateTime('data_inicio');  
             $table->dateTime('data_fim');  
-            $table->enum("status", ['Pendente', 'Aprovado', 'Reprovado']);
+            $table->enum("status", ['Pendente', 'Aprovado', 'Reprovado', 'Em Andamento', 'Concluida']);
+           
             $table->timestamps();
             
         });
