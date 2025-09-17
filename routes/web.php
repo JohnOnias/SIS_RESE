@@ -22,7 +22,7 @@ Route::get("user/home", [HomeController::class, 'index'])->name('home');
 // Route::get("user/home", [UsuarioController::class, 'listarEquipamentosReservados'])->name('reservas');
 Route::get("adm/insert", [AdmController::class, 'telaAdm'])->name('adm'); 
 Route::get("adm/dashboard", [AdmController::class, 'dashboard'])->name('dash'); 
-Route::get('/adm/dashboard/reservas_geral', [AdmController::class, 'reservas_geral'])->name('reservas_geral');
+Route::get('/adm/dashboard/reservas_geral', [AdmController::class, 'listarReservasDosUsuarios'])->name('reservas_geral');
 
 
 // rotas post

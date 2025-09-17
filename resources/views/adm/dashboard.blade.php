@@ -294,13 +294,13 @@
             </tr>
         </thead>
         <tbody class="bg-white divide-y divide-gray-200">
-            @if($reservas->count())
+            <!-- @if($reservas->count()) -->
                 @foreach($reservas as $reserva)
                     <tr class="reservation-row">
-                        <td class="px-6 py-4 text-sm font-medium">{{ $reserva->usuario->id ?? $reserva->usuario_id }}</td>
-                        <td class="px-6 py-4 text-sm text-gray-500">{{ $reserva->usuario->nome_usuario ?? '—' }}</td>
-                        <td class="px-6 py-4 text-sm text-gray-500">{{ $reserva->equipamento->nome_equipamento ?? '—' }}</td>
-                        <td class="px-6 py-4 text-sm text-gray-500">{{ $reserva->data_reserva }}</td>
+                        <td class="px-6 py-4 text-sm font-medium">{{$reserva->id }}</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">{{$reserva->nome_usuario }}</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">{{$reserva->nome_equipamento }}</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">{{date('H:i:s d/m/Y', strtotime($reserva->data_fim))}}</td>
                         <td class="px-6 py-4">
                             <span class="px-2 py-1 text-xs rounded-full status-{{ $reserva->status }}">
                                 {{ $reserva->status }}
@@ -313,11 +313,11 @@
                         </td>
                     </tr>
                 @endforeach
-            @else
+            <!-- @else
                 <tr>
                     <td colspan="6" class="px-6 py-4 text-center text-gray-500">Nenhuma reserva encontrada</td>
                 </tr>
-            @endif
+            @endif -->
         </tbody>
     </table>
 </div>
