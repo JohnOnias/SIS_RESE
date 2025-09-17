@@ -1,0 +1,287 @@
+{
+  "models": [
+    {
+      "name": "Adm",
+      "properties": [
+        {
+          "name": "nome_equipamento",
+          "type": "fillable",
+          "dataType": ""
+        },
+        {
+          "name": "descricao_equipamento",
+          "type": "fillable",
+          "dataType": ""
+        },
+        {
+          "name": "quantidade_equipamento",
+          "type": "fillable",
+          "dataType": ""
+        },
+        {
+          "name": "quantidade_disponivel_equipamento",
+          "type": "fillable",
+          "dataType": ""
+        }
+      ],
+      "methods": [],
+      "namespace": "App\\Models",
+      "tableName": "equipamentos"
+    },
+    {
+      "name": "Equipamento",
+      "properties": [
+        {
+          "name": "id",
+          "type": "fillable",
+          "dataType": ""
+        },
+        {
+          "name": "nome_equipamento",
+          "type": "fillable",
+          "dataType": ""
+        },
+        {
+          "name": "descricao_equipamento",
+          "type": "fillable",
+          "dataType": ""
+        },
+        {
+          "name": "quantidade_equipamento",
+          "type": "fillable",
+          "dataType": ""
+        },
+        {
+          "name": "quantidade_disponivel_equipamento",
+          "type": "fillable",
+          "dataType": ""
+        }
+      ],
+      "methods": [],
+      "namespace": "App\\Models"
+    },
+    {
+      "name": "Reserva",
+      "properties": [
+        {
+          "name": "usuario_id",
+          "type": "fillable",
+          "dataType": ""
+        },
+        {
+          "name": "equipamento_id",
+          "type": "fillable",
+          "dataType": ""
+        },
+        {
+          "name": "data_reserva",
+          "type": "fillable",
+          "dataType": ""
+        },
+        {
+          "name": "data_inicio",
+          "type": "fillable",
+          "dataType": ""
+        },
+        {
+          "name": "data_fim",
+          "type": "fillable",
+          "dataType": ""
+        },
+        {
+          "name": "status",
+          "type": "fillable",
+          "dataType": ""
+        }
+      ],
+      "methods": [],
+      "namespace": "App\\Models"
+    },
+    {
+      "name": "User",
+      "properties": [
+        {
+          "name": "name",
+          "type": "fillable",
+          "dataType": ""
+        },
+        {
+          "name": "email",
+          "type": "fillable",
+          "dataType": ""
+        },
+        {
+          "name": "password",
+          "type": "fillable",
+          "dataType": ""
+        }
+      ],
+      "methods": [],
+      "namespace": "App\\Models"
+    },
+    {
+      "name": "Usuario",
+      "properties": [
+        {
+          "name": "id",
+          "type": "fillable",
+          "dataType": ""
+        },
+        {
+          "name": "nome_usuario",
+          "type": "fillable",
+          "dataType": ""
+        },
+        {
+          "name": "email_usuario",
+          "type": "fillable",
+          "dataType": ""
+        },
+        {
+          "name": "matricula_usuario",
+          "type": "fillable",
+          "dataType": ""
+        },
+        {
+          "name": "telefone_usuario",
+          "type": "fillable",
+          "dataType": ""
+        },
+        {
+          "name": "tipo_usuario",
+          "type": "fillable",
+          "dataType": ""
+        },
+        {
+          "name": "senha_usuario",
+          "type": "fillable",
+          "dataType": ""
+        }
+      ],
+      "methods": [],
+      "namespace": "App\\Models",
+      "tableName": "usuarios"
+    }
+  ],
+  "controllers": [
+    {
+      "name": "AdmController",
+      "methods": [
+        {
+          "name": "telaAdm",
+          "params": ""
+        },
+        {
+          "name": "reservas_geral",
+          "params": "Request $request"
+        },
+        {
+          "name": "dashBoard",
+          "params": "Request $request"
+        },
+        {
+          "name": "inserirEquipamento",
+          "params": "Request $request"
+        },
+        {
+          "name": "listarReservasDosUsuarios",
+          "params": ""
+        }
+      ],
+      "namespace": "App\\Http\\Controllers"
+    },
+    {
+      "name": "Controller",
+      "methods": [],
+      "namespace": "App\\Http\\Controllers"
+    },
+    {
+      "name": "EquipamentoController",
+      "methods": [],
+      "namespace": "App\\Http\\Controllers"
+    },
+    {
+      "name": "HomeController",
+      "methods": [
+        {
+          "name": "index",
+          "params": "Request $request"
+        }
+      ],
+      "namespace": "App\\Http\\Controllers"
+    },
+    {
+      "name": "ReservaController",
+      "methods": [
+        {
+          "name": "fazerReserva",
+          "params": "Request $request"
+        },
+        {
+          "name": "aprovar",
+          "params": "$id"
+        },
+        {
+          "name": "reprovar",
+          "params": "$id"
+        }
+      ],
+      "namespace": "App\\Http\\Controllers"
+    },
+    {
+      "name": "UsuarioController",
+      "methods": [
+        {
+          "name": "telaCadastro",
+          "params": ""
+        },
+        {
+          "name": "telaLogin",
+          "params": ""
+        },
+        {
+          "name": "home",
+          "params": ""
+        },
+        {
+          "name": "cadastrar",
+          "params": "Request $request"
+        },
+        {
+          "name": "verificar",
+          "params": "Request $request"
+        },
+        {
+          "name": "reservarEquipamento",
+          "params": "Request $request"
+        },
+        {
+          "name": "listarEquipamentosReservados",
+          "params": "Request $request"
+        }
+      ],
+      "namespace": "App\\Http\\Controllers"
+    }
+  ],
+  "services": [],
+  "relationships": [],
+  "directories": {
+    ".": {
+      "models": [
+        "Adm",
+        "Equipamento",
+        "Reserva",
+        "User",
+        "Usuario"
+      ],
+      "controllers": [
+        "AdmController",
+        "Controller",
+        "EquipamentoController",
+        "HomeController",
+        "ReservaController",
+        "UsuarioController"
+      ]
+    }
+  }
+}

@@ -1,0 +1,214 @@
+{
+  "projectName": "laravel/laravel",
+  "projectVersion": "v12.28.1",
+  "generatedAt": "2025-09-17T18:40:28.815Z",
+  "diagrams": [
+    {
+      "id": "AdmController-telaAdm",
+      "name": "AdmController::telaAdm",
+      "controller": "Adm",
+      "method": "telaAdm",
+      "type": "generic",
+      "description": "Handles telaAdm operation in AdmController",
+      "fileName": "AdmController_telaAdm.md",
+      "models": [],
+      "timestamp": "2025-09-17T18:40:28.648Z"
+    },
+    {
+      "id": "AdmController-reservas_geral",
+      "name": "AdmController::reservas_geral",
+      "controller": "Adm",
+      "method": "reservas_geral",
+      "type": "generic",
+      "description": "Handles reservas_geral operation in AdmController",
+      "fileName": "AdmController_reservas_geral.md",
+      "models": [],
+      "timestamp": "2025-09-17T18:40:28.655Z"
+    },
+    {
+      "id": "AdmController-dashBoard",
+      "name": "AdmController::dashBoard",
+      "controller": "Adm",
+      "method": "dashBoard",
+      "type": "generic",
+      "description": "Handles dashBoard operation in AdmController",
+      "fileName": "AdmController_dashBoard.md",
+      "models": [],
+      "timestamp": "2025-09-17T18:40:28.661Z"
+    },
+    {
+      "id": "AdmController-inserirEquipamento",
+      "name": "AdmController::inserirEquipamento",
+      "controller": "Adm",
+      "method": "inserirEquipamento",
+      "type": "generic",
+      "description": "Handles inserirEquipamento operation in AdmController",
+      "fileName": "AdmController_inserirEquipamento.md",
+      "models": [
+        "Adm"
+      ],
+      "timestamp": "2025-09-17T18:40:28.664Z"
+    },
+    {
+      "id": "AdmController-listarReservasDosUsuarios",
+      "name": "AdmController::listarReservasDosUsuarios",
+      "controller": "Adm",
+      "method": "listarReservasDosUsuarios",
+      "type": "generic",
+      "description": "Handles listarReservasDosUsuarios operation in AdmController",
+      "fileName": "AdmController_listarReservasDosUsuarios.md",
+      "models": [],
+      "timestamp": "2025-09-17T18:40:28.666Z"
+    },
+    {
+      "id": "HomeController-index",
+      "name": "HomeController::index",
+      "controller": "Home",
+      "method": "index",
+      "type": "list",
+      "description": "Retrieves a collection of resources from HomeController",
+      "fileName": "HomeController_index.md",
+      "models": [
+        "Equipamento"
+      ],
+      "timestamp": "2025-09-17T18:40:28.669Z"
+    },
+    {
+      "id": "ReservaController-fazerReserva",
+      "name": "ReservaController::fazerReserva",
+      "controller": "Reserva",
+      "method": "fazerReserva",
+      "type": "generic",
+      "description": "Handles fazerReserva operation in ReservaController",
+      "fileName": "ReservaController_fazerReserva.md",
+      "models": [
+        "Reserva"
+      ],
+      "timestamp": "2025-09-17T18:40:28.671Z"
+    },
+    {
+      "id": "ReservaController-aprovar",
+      "name": "ReservaController::aprovar",
+      "controller": "Reserva",
+      "method": "aprovar",
+      "type": "generic",
+      "description": "Handles aprovar operation in ReservaController",
+      "fileName": "ReservaController_aprovar.md",
+      "models": [
+        "Reserva"
+      ],
+      "timestamp": "2025-09-17T18:40:28.673Z"
+    },
+    {
+      "id": "ReservaController-reprovar",
+      "name": "ReservaController::reprovar",
+      "controller": "Reserva",
+      "method": "reprovar",
+      "type": "generic",
+      "description": "Handles reprovar operation in ReservaController",
+      "fileName": "ReservaController_reprovar.md",
+      "models": [
+        "Reserva"
+      ],
+      "timestamp": "2025-09-17T18:40:28.675Z"
+    },
+    {
+      "id": "UsuarioController-telaCadastro",
+      "name": "UsuarioController::telaCadastro",
+      "controller": "Usuario",
+      "method": "telaCadastro",
+      "type": "generic",
+      "description": "Handles telaCadastro operation in UsuarioController",
+      "fileName": "UsuarioController_telaCadastro.md",
+      "models": [],
+      "timestamp": "2025-09-17T18:40:28.678Z"
+    },
+    {
+      "id": "UsuarioController-telaLogin",
+      "name": "UsuarioController::telaLogin",
+      "controller": "Usuario",
+      "method": "telaLogin",
+      "type": "generic",
+      "description": "Handles telaLogin operation in UsuarioController",
+      "fileName": "UsuarioController_telaLogin.md",
+      "models": [],
+      "timestamp": "2025-09-17T18:40:28.680Z"
+    },
+    {
+      "id": "UsuarioController-home",
+      "name": "UsuarioController::home",
+      "controller": "Usuario",
+      "method": "home",
+      "type": "generic",
+      "description": "Handles home operation in UsuarioController",
+      "fileName": "UsuarioController_home.md",
+      "models": [],
+      "timestamp": "2025-09-17T18:40:28.682Z"
+    },
+    {
+      "id": "UsuarioController-cadastrar",
+      "name": "UsuarioController::cadastrar",
+      "controller": "Usuario",
+      "method": "cadastrar",
+      "type": "generic",
+      "description": "Handles cadastrar operation in UsuarioController",
+      "fileName": "UsuarioController_cadastrar.md",
+      "models": [
+        "Usuario"
+      ],
+      "timestamp": "2025-09-17T18:40:28.684Z"
+    },
+    {
+      "id": "UsuarioController-verificar",
+      "name": "UsuarioController::verificar",
+      "controller": "Usuario",
+      "method": "verificar",
+      "type": "generic",
+      "description": "Handles verificar operation in UsuarioController",
+      "fileName": "UsuarioController_verificar.md",
+      "models": [
+        "Usuario"
+      ],
+      "timestamp": "2025-09-17T18:40:28.687Z"
+    },
+    {
+      "id": "UsuarioController-reservarEquipamento",
+      "name": "UsuarioController::reservarEquipamento",
+      "controller": "Usuario",
+      "method": "reservarEquipamento",
+      "type": "generic",
+      "description": "Handles reservarEquipamento operation in UsuarioController",
+      "fileName": "UsuarioController_reservarEquipamento.md",
+      "models": [
+        "Reserva"
+      ],
+      "timestamp": "2025-09-17T18:40:28.691Z"
+    },
+    {
+      "id": "UsuarioController-listarEquipamentosReservados",
+      "name": "UsuarioController::listarEquipamentosReservados",
+      "controller": "Usuario",
+      "method": "listarEquipamentosReservados",
+      "type": "generic",
+      "description": "Handles listarEquipamentosReservados operation in UsuarioController",
+      "fileName": "UsuarioController_listarEquipamentosReservados.md",
+      "models": [],
+      "timestamp": "2025-09-17T18:40:28.693Z"
+    }
+  ],
+  "statistics": {
+    "totalDiagrams": 16,
+    "byType": {
+      "generic": 15,
+      "list": 1
+    },
+    "byController": {
+      "Adm": 5,
+      "": 0,
+      "Equipamento": 0,
+      "Home": 1,
+      "Reserva": 3,
+      "Usuario": 7
+    }
+  }
+}

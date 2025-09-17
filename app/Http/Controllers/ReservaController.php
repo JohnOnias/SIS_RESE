@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Reserva;
 
 class ReservaController extends Controller
 {
@@ -20,4 +21,23 @@ class ReservaController extends Controller
             return redirect()->back()->with('error', $e->getMessage());
         }
     }
+
+    public function aprovar($id)
+{
+    $reserva = Reserva::findOrFail($id);
+    $reserva->status = 'Aprovado';
+    $reserva->save();
+
+    return redirect()->back()->with('success', 'Reserva aprovada com sucesso!');
+}
+public function reprovar($id)
+{
+    $reserva = Reserva::findOrFail($id);
+    $reserva->status = 'Reprovado';
+    $reserva->save();
+
+    return redirect()->back()->with('success', 'Reserva reprovada com sucesso!');
+}
+
+
 }

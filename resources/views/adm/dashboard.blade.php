@@ -76,7 +76,7 @@
                                     <span><i class="fas fa-calendar-check mr-3"></i> Reservas</span>
                                 </button>
                             </li>
-                            <li>
+                            <!-- <li>
                                 <button data-tab="history" class="tab-button w-full text-left px-4 py-3 rounded-lg font-medium flex items-center justify-between hover:bg-gray-100">
                                     <span><i class="fas fa-history mr-3"></i> Histórico</span>
                                 </button>
@@ -96,7 +96,7 @@
                                     <span><i class="fas fa-cog mr-3"></i> Configurações</span>
                                 </button>
                             </li>
-                        </ul>
+                        </ul> -->
                     </nav>
                 </div>
 
@@ -267,7 +267,7 @@
 
 <div class="bg-gray-50 rounded-lg p-4 mb-6">
     <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <form method="GET" action="{{ route('reservas_geral') }}">
+        <form method="GET" action="{{ route('dash') }}">
             <select name="status" class="w-full border border-gray-300 rounded px-3 py-2 text-sm" onchange="this.form.submit()">
                 <option value="todas" {{ $status == 'todas' ? 'selected' : '' }}>Todas</option>
                 <option value="Pendente" {{ $status == 'Pendente' ? 'selected' : '' }}>Pendente</option>
@@ -297,20 +297,45 @@
             <!-- @if($reservas->count()) -->
                 @foreach($reservas as $reserva)
                     <tr class="reservation-row">
-                        <td class="px-6 py-4 text-sm font-medium">{{$reserva->id }}</td>
+                        <td class="px-6 py-4 text-sm font-medium">{{$reserva->usuario_id }}</td>
                         <td class="px-6 py-4 text-sm text-gray-500">{{$reserva->nome_usuario }}</td>
                         <td class="px-6 py-4 text-sm text-gray-500">{{$reserva->nome_equipamento }}</td>
-                        <td class="px-6 py-4 text-sm text-gray-500">{{date('H:i:s d/m/Y', strtotime($reserva->data_fim))}}</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">{{date('H:i:s d/m/Y', strtotime($reserva->data_reserva))}}</td>
                         <td class="px-6 py-4">
                             <span class="px-2 py-1 text-xs rounded-full status-{{ $reserva->status }}">
                                 {{ $reserva->status }}
                             </span>
                         </td>
+                        
                         <td class="px-6 py-4 text-sm text-gray-500">
-                            <button class="text-green-600 hover:text-green-900 mr-3"><i class="fas fa-eye"></i></button>
-                            <button class="text-blue-600 hover:text-blue-900 mr-3"><i class="fas fa-edit"></i></button>
-                            <button class="text-red-600 hover:text-red-900"><i class="fas fa-trash"></i></button>
-                        </td>
+    <!-- Botão Aprovar -->
+  <td class="px-6 py-4 text-sm text-gray-500">
+    @if($reserva->status == 'Pendente')
+        <!-- Aprovar -->
+        <form action="{{ route('reservas.aprovar', $reserva->usuario_id) }}" method="POST" style="display:inline;">
+            @csrf
+            @method('PUT')
+            <button type="submit" class="text-green-600 hover:text-green-900 mr-2">
+                <i class="fas fa-check"></i> Aprovar
+            </button>
+        </form>
+
+        <!-- Reprovar -->
+        <form action="{{ route('reservas.reprovar', $reserva->usuario_id) }}" method="POST" style="display:inline;">
+            @csrf
+            @method('PUT')
+            <button type="submit" class="text-red-600 hover:text-red-900">
+                <i class="fas fa-times"></i> Reprovar
+            </button>
+        </form>
+    @endif
+
+    <!-- Outros botões -->
+    <!-- <button class="text-blue-600 hover:text-blue-900 mr-3"><i class="fas fa-edit"></i></button>
+    <button class="text-gray-600 hover:text-gray-900"><i class="fas fa-trash"></i></button> -->
+</td>
+
+
                     </tr>
                 @endforeach
             <!-- @else
@@ -326,7 +351,7 @@
                         <!-- Pagination -->
                         <div class="flex items-center justify-between mt-6">
                             <div class="text-sm text-gray-500">
-                                Mostrando 1 a 4 de 12 reservas
+                                add função dpois(numero de paginas)
                             </div>
                             <div class="flex space-x-1">
                                 <button class="px-3 py-1 border border-gray-300 rounded text-sm hover:bg-gray-100">Anterior</button>

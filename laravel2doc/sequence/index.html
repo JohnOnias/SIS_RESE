@@ -1,0 +1,1280 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sequence Diagrams - laravel/laravel</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+<!-- Add Font Awesome CDN if not already included -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+<div class="navbar">
+  <div class="navbar-title">
+    <i class="fas fa-code-branch"></i> Laravel2Doc
+  </div>
+  <div class="navbar-links">
+    <a href="https://laravel2doc.netlify.app/"><i class="fas fa-house"></i> Home</a>
+    <a href="../erd/"><i class="fas fa-project-diagram"></i> ERD</a>
+    <a href="../uml/"><i class="fas fa-sitemap"></i> UML</a>
+    <a href="../sequence/"><i class="fas fa-stream"></i> Sequence</a>
+    <a href="../api/"><i class="fas fa-plug"></i> API</a>
+    <a href="https://github.com/Priom7/laravel2doc" target="_blank" class="github-link">
+      <i class="fab fa-github"></i> GitHub
+    </a>
+  </div>
+</div>
+
+  <header>
+    <h1>Sequence Diagrams</h1>
+    <h2>laravel/laravel (Laravel v12.28.1)</h2>
+  </header>
+  
+  <nav>
+    <div class="controls">
+      <input type="text" id="search-diagrams" class="search-box" placeholder="Search diagrams...">
+      <select id="filter-type" class="select-box">
+        <option value="all">All Types</option>
+        <option value="list">List</option>
+        <option value="show">Show</option>
+        <option value="create">Create</option>
+        <option value="update">Update</option>
+        <option value="delete">Delete</option>
+        <option value="generic">Generic</option>
+      </select>
+      <select id="filter-controller" class="select-box">
+        <option value="all">All Controllers</option>
+        <option value="Adm">Adm</option>
+        <option value=""></option>
+        <option value="Equipamento">Equipamento</option>
+        <option value="Home">Home</option>
+        <option value="Reserva">Reserva</option>
+        <option value="Usuario">Usuario</option>
+      </select>
+    </div>
+    <div class="controls">
+      <select id="diagram-theme" class="select-box">
+        <option value="default">Theme: Default</option>
+        <option value="forest">Theme: Forest</option>
+        <option value="dark">Theme: Dark</option>
+        <option value="neutral">Theme: Neutral</option>
+      </select>
+      <button class="btn btn-blue theme-toggle" id="theme-toggle">🌙</button>
+    </div>
+  </nav>
+  
+  <main>
+    <div class="dashboard">
+      <div class="stat-card">
+        <div class="stat-number">16</div>
+        <div class="stat-label">Total Diagrams</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">6</div>
+        <div class="stat-label">Controllers</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">0</div>
+        <div class="stat-label">Create Operations</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">1</div>
+        <div class="stat-label">List Operations</div>
+      </div>
+    </div>
+    
+    <div class="chart-container" style="display: flex; gap: 2rem; margin-bottom: 2rem;">
+      <div style="flex: 1; background-color: var(--light-color); padding: 1rem; border-radius: 8px;">
+        <h3>Diagram Types Distribution</h3>
+        <canvas id="stats-chart" data-stats='{"totalDiagrams":16,"byType":{"generic":15,"list":1},"byController":{"Adm":5,"":0,"Equipamento":0,"Home":1,"Reserva":3,"Usuario":7}}'></canvas>
+      </div>
+      <div style="flex: 1; background-color: var(--light-color); padding: 1rem; border-radius: 8px;">
+        <h3>Controller Distribution</h3>
+        <canvas id="controller-chart" data-stats='{"totalDiagrams":16,"byType":{"generic":15,"list":1},"byController":{"Adm":5,"":0,"Equipamento":0,"Home":1,"Reserva":3,"Usuario":7}}'></canvas>
+      </div>
+    </div>
+    
+    <div class="tabs">
+      <div class="tab active" data-tab="all-diagrams">All Diagrams</div>
+      <div class="tab" data-tab="by-type">By Type</div>
+      <div class="tab" data-tab="by-controller">By Controller</div>
+    </div>
+    
+    <div id="all-diagrams" class="tab-content active">
+      <div class="diagram-grid">
+        
+      <div class="diagram-card" data-controller="Adm" data-method="telaAdm" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>Adm</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">telaAdm</div>
+          <div class="diagram-description">Handles telaAdm operation in AdmController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_AdmController-telaAdm.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="diagram-card" data-controller="Adm" data-method="reservas_geral" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>Adm</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">reservas_geral</div>
+          <div class="diagram-description">Handles reservas_geral operation in AdmController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_AdmController-reservas_geral.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="diagram-card" data-controller="Adm" data-method="dashBoard" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>Adm</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">dashBoard</div>
+          <div class="diagram-description">Handles dashBoard operation in AdmController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_AdmController-dashBoard.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="diagram-card" data-controller="Adm" data-method="inserirEquipamento" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>Adm</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">inserirEquipamento</div>
+          <div class="diagram-description">Handles inserirEquipamento operation in AdmController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            <span class="model-tag">Adm</span>
+            
+          </div>
+          <div class="diagram-actions">
+            <a href="view_AdmController-inserirEquipamento.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="diagram-card" data-controller="Adm" data-method="listarReservasDosUsuarios" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>Adm</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">listarReservasDosUsuarios</div>
+          <div class="diagram-description">Handles listarReservasDosUsuarios operation in AdmController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_AdmController-listarReservasDosUsuarios.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="diagram-card" data-controller="Home" data-method="index" data-type="list">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-list">LIST</div>
+          <h4>Home</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">index</div>
+          <div class="diagram-description">Retrieves a collection of resources from HomeController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            <span class="model-tag">Equipamento</span>
+            
+          </div>
+          <div class="diagram-actions">
+            <a href="view_HomeController-index.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="diagram-card" data-controller="Reserva" data-method="fazerReserva" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>Reserva</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">fazerReserva</div>
+          <div class="diagram-description">Handles fazerReserva operation in ReservaController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            <span class="model-tag">Reserva</span>
+            
+          </div>
+          <div class="diagram-actions">
+            <a href="view_ReservaController-fazerReserva.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="diagram-card" data-controller="Reserva" data-method="aprovar" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>Reserva</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">aprovar</div>
+          <div class="diagram-description">Handles aprovar operation in ReservaController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            <span class="model-tag">Reserva</span>
+            
+          </div>
+          <div class="diagram-actions">
+            <a href="view_ReservaController-aprovar.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="diagram-card" data-controller="Reserva" data-method="reprovar" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>Reserva</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">reprovar</div>
+          <div class="diagram-description">Handles reprovar operation in ReservaController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            <span class="model-tag">Reserva</span>
+            
+          </div>
+          <div class="diagram-actions">
+            <a href="view_ReservaController-reprovar.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="diagram-card" data-controller="Usuario" data-method="telaCadastro" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>Usuario</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">telaCadastro</div>
+          <div class="diagram-description">Handles telaCadastro operation in UsuarioController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_UsuarioController-telaCadastro.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="diagram-card" data-controller="Usuario" data-method="telaLogin" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>Usuario</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">telaLogin</div>
+          <div class="diagram-description">Handles telaLogin operation in UsuarioController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_UsuarioController-telaLogin.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="diagram-card" data-controller="Usuario" data-method="home" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>Usuario</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">home</div>
+          <div class="diagram-description">Handles home operation in UsuarioController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_UsuarioController-home.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="diagram-card" data-controller="Usuario" data-method="cadastrar" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>Usuario</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">cadastrar</div>
+          <div class="diagram-description">Handles cadastrar operation in UsuarioController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            <span class="model-tag">Usuario</span>
+            
+          </div>
+          <div class="diagram-actions">
+            <a href="view_UsuarioController-cadastrar.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="diagram-card" data-controller="Usuario" data-method="verificar" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>Usuario</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">verificar</div>
+          <div class="diagram-description">Handles verificar operation in UsuarioController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            <span class="model-tag">Usuario</span>
+            
+          </div>
+          <div class="diagram-actions">
+            <a href="view_UsuarioController-verificar.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="diagram-card" data-controller="Usuario" data-method="reservarEquipamento" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>Usuario</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">reservarEquipamento</div>
+          <div class="diagram-description">Handles reservarEquipamento operation in UsuarioController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            <span class="model-tag">Reserva</span>
+            
+          </div>
+          <div class="diagram-actions">
+            <a href="view_UsuarioController-reservarEquipamento.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="diagram-card" data-controller="Usuario" data-method="listarEquipamentosReservados" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>Usuario</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">listarEquipamentosReservados</div>
+          <div class="diagram-description">Handles listarEquipamentosReservados operation in UsuarioController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_UsuarioController-listarEquipamentosReservados.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+      </div>
+    </div>
+    
+    <div id="by-type" class="tab-content">
+      
+      <div class="type-section">
+        <h3>List Operations (1)</h3>
+        <div class="diagram-grid">
+          
+      <div class="diagram-card" data-controller="Home" data-method="index" data-type="list">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-list">LIST</div>
+          <h4>Home</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">index</div>
+          <div class="diagram-description">Retrieves a collection of resources from HomeController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            <span class="model-tag">Equipamento</span>
+            
+          </div>
+          <div class="diagram-actions">
+            <a href="view_HomeController-index.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+        </div>
+      </div>
+      
+      
+      
+      
+      
+      
+      <div class="type-section">
+        <h3>Generic Operations (15)</h3>
+        <div class="diagram-grid">
+          
+      <div class="diagram-card" data-controller="Adm" data-method="telaAdm" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>Adm</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">telaAdm</div>
+          <div class="diagram-description">Handles telaAdm operation in AdmController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_AdmController-telaAdm.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="Adm" data-method="reservas_geral" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>Adm</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">reservas_geral</div>
+          <div class="diagram-description">Handles reservas_geral operation in AdmController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_AdmController-reservas_geral.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="Adm" data-method="dashBoard" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>Adm</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">dashBoard</div>
+          <div class="diagram-description">Handles dashBoard operation in AdmController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_AdmController-dashBoard.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="Adm" data-method="inserirEquipamento" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>Adm</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">inserirEquipamento</div>
+          <div class="diagram-description">Handles inserirEquipamento operation in AdmController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            <span class="model-tag">Adm</span>
+            
+          </div>
+          <div class="diagram-actions">
+            <a href="view_AdmController-inserirEquipamento.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="Adm" data-method="listarReservasDosUsuarios" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>Adm</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">listarReservasDosUsuarios</div>
+          <div class="diagram-description">Handles listarReservasDosUsuarios operation in AdmController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_AdmController-listarReservasDosUsuarios.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="Reserva" data-method="fazerReserva" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>Reserva</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">fazerReserva</div>
+          <div class="diagram-description">Handles fazerReserva operation in ReservaController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            <span class="model-tag">Reserva</span>
+            
+          </div>
+          <div class="diagram-actions">
+            <a href="view_ReservaController-fazerReserva.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="Reserva" data-method="aprovar" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>Reserva</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">aprovar</div>
+          <div class="diagram-description">Handles aprovar operation in ReservaController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            <span class="model-tag">Reserva</span>
+            
+          </div>
+          <div class="diagram-actions">
+            <a href="view_ReservaController-aprovar.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="Reserva" data-method="reprovar" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>Reserva</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">reprovar</div>
+          <div class="diagram-description">Handles reprovar operation in ReservaController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            <span class="model-tag">Reserva</span>
+            
+          </div>
+          <div class="diagram-actions">
+            <a href="view_ReservaController-reprovar.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="Usuario" data-method="telaCadastro" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>Usuario</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">telaCadastro</div>
+          <div class="diagram-description">Handles telaCadastro operation in UsuarioController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_UsuarioController-telaCadastro.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="Usuario" data-method="telaLogin" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>Usuario</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">telaLogin</div>
+          <div class="diagram-description">Handles telaLogin operation in UsuarioController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_UsuarioController-telaLogin.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="Usuario" data-method="home" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>Usuario</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">home</div>
+          <div class="diagram-description">Handles home operation in UsuarioController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_UsuarioController-home.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="Usuario" data-method="cadastrar" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>Usuario</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">cadastrar</div>
+          <div class="diagram-description">Handles cadastrar operation in UsuarioController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            <span class="model-tag">Usuario</span>
+            
+          </div>
+          <div class="diagram-actions">
+            <a href="view_UsuarioController-cadastrar.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="Usuario" data-method="verificar" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>Usuario</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">verificar</div>
+          <div class="diagram-description">Handles verificar operation in UsuarioController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            <span class="model-tag">Usuario</span>
+            
+          </div>
+          <div class="diagram-actions">
+            <a href="view_UsuarioController-verificar.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="Usuario" data-method="reservarEquipamento" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>Usuario</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">reservarEquipamento</div>
+          <div class="diagram-description">Handles reservarEquipamento operation in UsuarioController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            <span class="model-tag">Reserva</span>
+            
+          </div>
+          <div class="diagram-actions">
+            <a href="view_UsuarioController-reservarEquipamento.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="Usuario" data-method="listarEquipamentosReservados" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>Usuario</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">listarEquipamentosReservados</div>
+          <div class="diagram-description">Handles listarEquipamentosReservados operation in UsuarioController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_UsuarioController-listarEquipamentosReservados.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+        </div>
+      </div>
+      
+    </div>
+    
+    <div id="by-controller" class="tab-content">
+      
+      <div class="controller-section">
+        <h3>Adm Controller (5)</h3>
+        <div class="diagram-grid">
+          
+      <div class="diagram-card" data-controller="Adm" data-method="telaAdm" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>Adm</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">telaAdm</div>
+          <div class="diagram-description">Handles telaAdm operation in AdmController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_AdmController-telaAdm.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="Adm" data-method="reservas_geral" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>Adm</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">reservas_geral</div>
+          <div class="diagram-description">Handles reservas_geral operation in AdmController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_AdmController-reservas_geral.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="Adm" data-method="dashBoard" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>Adm</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">dashBoard</div>
+          <div class="diagram-description">Handles dashBoard operation in AdmController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_AdmController-dashBoard.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="Adm" data-method="inserirEquipamento" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>Adm</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">inserirEquipamento</div>
+          <div class="diagram-description">Handles inserirEquipamento operation in AdmController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            <span class="model-tag">Adm</span>
+            
+          </div>
+          <div class="diagram-actions">
+            <a href="view_AdmController-inserirEquipamento.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="Adm" data-method="listarReservasDosUsuarios" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>Adm</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">listarReservasDosUsuarios</div>
+          <div class="diagram-description">Handles listarReservasDosUsuarios operation in AdmController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_AdmController-listarReservasDosUsuarios.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+        </div>
+      </div>
+      
+      
+      
+      
+      <div class="controller-section">
+        <h3>Home Controller (1)</h3>
+        <div class="diagram-grid">
+          
+      <div class="diagram-card" data-controller="Home" data-method="index" data-type="list">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-list">LIST</div>
+          <h4>Home</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">index</div>
+          <div class="diagram-description">Retrieves a collection of resources from HomeController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            <span class="model-tag">Equipamento</span>
+            
+          </div>
+          <div class="diagram-actions">
+            <a href="view_HomeController-index.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+        </div>
+      </div>
+      
+      
+      <div class="controller-section">
+        <h3>Reserva Controller (3)</h3>
+        <div class="diagram-grid">
+          
+      <div class="diagram-card" data-controller="Reserva" data-method="fazerReserva" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>Reserva</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">fazerReserva</div>
+          <div class="diagram-description">Handles fazerReserva operation in ReservaController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            <span class="model-tag">Reserva</span>
+            
+          </div>
+          <div class="diagram-actions">
+            <a href="view_ReservaController-fazerReserva.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="Reserva" data-method="aprovar" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>Reserva</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">aprovar</div>
+          <div class="diagram-description">Handles aprovar operation in ReservaController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            <span class="model-tag">Reserva</span>
+            
+          </div>
+          <div class="diagram-actions">
+            <a href="view_ReservaController-aprovar.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="Reserva" data-method="reprovar" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>Reserva</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">reprovar</div>
+          <div class="diagram-description">Handles reprovar operation in ReservaController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            <span class="model-tag">Reserva</span>
+            
+          </div>
+          <div class="diagram-actions">
+            <a href="view_ReservaController-reprovar.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+        </div>
+      </div>
+      
+      
+      <div class="controller-section">
+        <h3>Usuario Controller (7)</h3>
+        <div class="diagram-grid">
+          
+      <div class="diagram-card" data-controller="Usuario" data-method="telaCadastro" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>Usuario</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">telaCadastro</div>
+          <div class="diagram-description">Handles telaCadastro operation in UsuarioController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_UsuarioController-telaCadastro.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="Usuario" data-method="telaLogin" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>Usuario</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">telaLogin</div>
+          <div class="diagram-description">Handles telaLogin operation in UsuarioController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_UsuarioController-telaLogin.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="Usuario" data-method="home" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>Usuario</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">home</div>
+          <div class="diagram-description">Handles home operation in UsuarioController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_UsuarioController-home.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="Usuario" data-method="cadastrar" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>Usuario</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">cadastrar</div>
+          <div class="diagram-description">Handles cadastrar operation in UsuarioController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            <span class="model-tag">Usuario</span>
+            
+          </div>
+          <div class="diagram-actions">
+            <a href="view_UsuarioController-cadastrar.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="Usuario" data-method="verificar" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>Usuario</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">verificar</div>
+          <div class="diagram-description">Handles verificar operation in UsuarioController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            <span class="model-tag">Usuario</span>
+            
+          </div>
+          <div class="diagram-actions">
+            <a href="view_UsuarioController-verificar.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="Usuario" data-method="reservarEquipamento" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>Usuario</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">reservarEquipamento</div>
+          <div class="diagram-description">Handles reservarEquipamento operation in UsuarioController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            <span class="model-tag">Reserva</span>
+            
+          </div>
+          <div class="diagram-actions">
+            <a href="view_UsuarioController-reservarEquipamento.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="Usuario" data-method="listarEquipamentosReservados" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>Usuario</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">listarEquipamentosReservados</div>
+          <div class="diagram-description">Handles listarEquipamentosReservados operation in UsuarioController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_UsuarioController-listarEquipamentosReservados.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+        </div>
+      </div>
+      
+    </div>
+  </main>
+  
+  <footer>
+    <p>Generated on 17/09/2025 at 15:40:28</p>
+    <p>Sequence Diagram Generator for Laravel</p>
+  </footer>
+  
+  <script src="assets/script.js"></script>
+</body>
+</html>
+  

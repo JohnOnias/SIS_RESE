@@ -1,0 +1,652 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Documentation - laravel/laravel</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+  <style>
+    :root {
+      --primary-color: #3490dc;
+      --secondary-color: #38c172;
+      --dark-color: #2d3748;
+      --light-color: #f8fafc;
+      --get-color: #3490dc;
+      --post-color: #38c172;
+      --put-color: #f6993f;
+      --patch-color: #f6993f;
+      --delete-color: #e3342f;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    header {
+      background: var(--primary-color);
+      color: white;
+      padding: 1rem;
+      border-radius: 5px;
+      margin-bottom: 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    h1, h2, h3 {
+      color: var(--dark-color);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 2rem;
+      border: 1px solid #ddd;
+    }
+    th, td {
+      padding: 0.75rem;
+      text-align: left;
+      border: 1px solid #ddd;
+    }
+    th {
+      background-color: var(--light-color);
+      font-weight: bold;
+    }
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+.navbar {
+  background-color: #2c3e50;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 2rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.navbar-title {
+  font-size: 1.6rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.navbar-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  transition: background 0.3s, color 0.3s;
+}
+
+.navbar-links a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #1abc9c;
+}
+
+.github-link {
+  background-color: #b43355;
+  color: #2c3e50;
+  font-weight: 500;
+}
+
+.github-link:hover {
+  background-color: #bdc3c7;
+  color: #2c3e50;
+}
+
+    code {
+      background: #f4f4f4;
+      padding: 0.2rem 0.4rem;
+      border-radius: 3px;
+      font-family: Consolas, Monaco, 'Andale Mono', monospace;
+    }
+    pre {
+      background: #f4f4f4;
+      padding: 1rem;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+    hr {
+      border: 0;
+      height: 1px;
+      background: #ddd;
+      margin: 2rem 0;
+    }
+    .method {
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      color: white;
+      font-weight: bold;
+      display: inline-block;
+      min-width: 70px;
+      text-align: center;
+    }
+    .method-get { background-color: var(--get-color); }
+    .method-post { background-color: var(--post-color); }
+    .method-put, .method-patch { background-color: var(--put-color); }
+    .method-delete { background-color: var(--delete-color); }
+    
+    #api-content ul {
+      padding-left: 20px;
+    }
+    #api-content li {
+      margin-bottom: 5px;
+    }
+    
+    /* Interactive elements */
+    .search-container {
+      margin-bottom: 1.5rem;
+      position: sticky;
+      top: 80px;
+      z-index: 99;
+      background: white;
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+    }
+    #search {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+    .endpoint-container {
+      margin-bottom: 2rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    .endpoint-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem;
+      background-color: var(--light-color);
+      cursor: pointer;
+    }
+    .endpoint-header h3 {
+      margin: 0;
+      display: flex;
+      align-items: center;
+    }
+    .endpoint-content {
+      padding: 0.75rem;
+      display: none;
+    }
+    .endpoint-content.active {
+      display: block;
+    }
+    .try-it {
+      background-color: var(--secondary-color);
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
+    .try-it:hover {
+      opacity: 0.9;
+    }
+    .try-it-form {
+      margin-top: 1rem;
+      padding: 1rem;
+      background-color: #f9f9f9;
+      border-radius: 4px;
+    }
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    .form-group textarea {
+      height: 100px;
+    }
+    .response-container {
+      margin-top: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      overflow: hidden;
+      display: none;
+    }
+    .response-header {
+      padding: 0.5rem;
+      background-color: var(--light-color);
+      display: flex;
+      justify-content: space-between;
+    }
+    .response-body {
+      padding: 0.5rem;
+      overflow-x: auto;
+    }
+    .collapse-icon {
+      margin-right: 8px;
+      transition: transform 0.3s;
+    }
+    .endpoint-header.active .collapse-icon {
+      transform: rotate(90deg);
+    }
+    #dark-mode-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--dark-color);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .dark-mode {
+      background-color: #1a202c;
+      color: #f7fafc;
+    }
+    .dark-mode header {
+      background-color: #2d3748;
+    }
+    .dark-mode table, .dark-mode th, .dark-mode td {
+      border-color: #4a5568;
+    }
+    .dark-mode th, .dark-mode .endpoint-header {
+      background-color: #2d3748;
+      color: #f7fafc;
+    }
+    .dark-mode tr:nth-child(even) {
+      background-color: #2d3748;
+    }
+    .dark-mode code, .dark-mode pre {
+      background-color: #2d3748;
+      color: #f7fafc;
+    }
+    
+    @media (max-width: 768px) {
+      table {
+        display: block;
+        overflow-x: auto;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+<!-- Add Font Awesome CDN if not already included -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+<div class="navbar">
+  <div class="navbar-title">
+    <i class="fas fa-code-branch"></i> Laravel2Doc
+  </div>
+  <div class="navbar-links">
+    <a href="https://laravel2doc.netlify.app/"><i class="fas fa-house"></i> Home</a>
+    <a href="../erd/"><i class="fas fa-project-diagram"></i> ERD</a>
+    <a href="../uml/"><i class="fas fa-sitemap"></i> UML</a>
+    <a href="../sequence/"><i class="fas fa-stream"></i> Sequence</a>
+    <a href="../api/"><i class="fas fa-plug"></i> API</a>
+    <a href="https://github.com/Priom7/laravel2doc" target="_blank" class="github-link">
+      <i class="fab fa-github"></i> GitHub
+    </a>
+  </div>
+</div>
+
+  <header>
+    <h1>API Documentation</h1>
+    <h2>laravel/laravel (Laravel v12.28.1)</h2>
+  </header>
+  
+  <div class="search-container">
+    <input type="text" id="search" placeholder="Search endpoints, methods, or descriptions...">
+  </div>
+  
+  <main class="markdown-body">
+    <div id="api-content">
+      <h1 id="API Documentation">API Documentation</h1>
+
+<h2 id="Project: laravel/laravel">Project: laravel/laravel</h2>
+
+<p>Laravel Version: v12.28.1</p>
+
+<p>Generated: 17/09/2025, 15:40:28</p>
+
+<h2 id="Table of Contents">Table of Contents</h2>
+
+<ul><li>[web](#web)</li>
+<p></ul></p>
+<h2 id="web">web</h2>
+
+<p>| Method | Endpoint | Handler | Description |</p>
+<p>|--------|----------|---------|-------------|</p>
+<p>| GET | / | function(){</p>
+<p>    return redirect()->route("telaLogin");</p>
+<p>});</p>
+
+
+<p>// rotas get</p>
+<p>Route::get("user/login", [UsuarioController::class, 'telaLogin' | List resource |</p>
+<p>| GET | user/cadastro | UsuarioController::class, 'telaCadastro' | List cadastro |</p>
+<p>| GET | user/home | UsuarioController::class, 'home' | List home |</p>
+<p>| GET | user/home | HomeController::class, 'index' | List home |</p>
+<p>| GET | user/home | UsuarioController::class, 'listarEquipamentosReservados' | List home |</p>
+<p>| GET | adm/insert | AdmController::class, 'telaAdm' | List insert |</p>
+<p>| GET | adm/dashboard | AdmController::class, 'dashboard' | List dashboard |</p>
+<p>| GET | /adm/dashboard/reservas_geral | AdmController::class, 'listarReservasDosUsuarios' | List reservas_geral |</p>
+<p>| POST | /adm/inserir | AdmController::class, 'inserirEquipamento' | Create a new inserir |</p>
+<p>| POST | user/cadastro | UsuarioController::class, 'cadastrar' | Create a new cadastro |</p>
+<p>| POST | user/login | UsuarioController::class, 'verificar' | Create a new login |</p>
+<p>| POST | user/home | UsuarioController::class, 'reservarEquipamento' | Create a new home |</p>
+<p>| POST | /reservar | ReservaController::class, 'fazerReserva' | Create a new reservar |</p>
+<p>| PUT | /reservas/{id}/aprovar | ReservaController::class, 'aprovar' | Update a specific aprovar |</p>
+<p>| PUT | /reservas/{id}/reprovar | ReservaController::class, 'reprovar' | Update a specific reprovar |</p>
+
+<p>### GET /</p>
+
+<p><strong>Handler:</strong> function(){</p>
+<p>    return redirect()->route("telaLogin");</p>
+<p>});</p>
+
+
+<p>// rotas get</p>
+<p>Route::get("user/login", [UsuarioController::class, 'telaLogin'</p>
+
+<p><strong>Description:</strong> List resource</p>
+
+<hr>
+
+<p>### GET user/cadastro</p>
+
+<p><strong>Handler:</strong> UsuarioController::class, 'telaCadastro'</p>
+
+<p><strong>Description:</strong> List cadastro</p>
+
+<hr>
+
+<p>### GET user/home</p>
+
+<p><strong>Handler:</strong> UsuarioController::class, 'home'</p>
+
+<p><strong>Description:</strong> List home</p>
+
+<hr>
+
+<p>### GET user/home</p>
+
+<p><strong>Handler:</strong> HomeController::class, 'index'</p>
+
+<p><strong>Description:</strong> List home</p>
+
+<hr>
+
+<p>### GET user/home</p>
+
+<p><strong>Handler:</strong> UsuarioController::class, 'listarEquipamentosReservados'</p>
+
+<p><strong>Description:</strong> List home</p>
+
+<hr>
+
+<p>### GET adm/insert</p>
+
+<p><strong>Handler:</strong> AdmController::class, 'telaAdm'</p>
+
+<p><strong>Description:</strong> List insert</p>
+
+<hr>
+
+<p>### GET adm/dashboard</p>
+
+<p><strong>Handler:</strong> AdmController::class, 'dashboard'</p>
+
+<p><strong>Description:</strong> List dashboard</p>
+
+<hr>
+
+<p>### GET /adm/dashboard/reservas_geral</p>
+
+<p><strong>Handler:</strong> AdmController::class, 'listarReservasDosUsuarios'</p>
+
+<p><strong>Description:</strong> List reservas_geral</p>
+
+<hr>
+
+<p>### POST /adm/inserir</p>
+
+<p><strong>Handler:</strong> AdmController::class, 'inserirEquipamento'</p>
+
+<p><strong>Description:</strong> Create a new inserir</p>
+
+<hr>
+
+<p>### POST user/cadastro</p>
+
+<p><strong>Handler:</strong> UsuarioController::class, 'cadastrar'</p>
+
+<p><strong>Description:</strong> Create a new cadastro</p>
+
+<hr>
+
+<p>### POST user/login</p>
+
+<p><strong>Handler:</strong> UsuarioController::class, 'verificar'</p>
+
+<p><strong>Description:</strong> Create a new login</p>
+
+<hr>
+
+<p>### POST user/home</p>
+
+<p><strong>Handler:</strong> UsuarioController::class, 'reservarEquipamento'</p>
+
+<p><strong>Description:</strong> Create a new home</p>
+
+<hr>
+
+<p>### POST /reservar</p>
+
+<p><strong>Handler:</strong> ReservaController::class, 'fazerReserva'</p>
+
+<p><strong>Description:</strong> Create a new reservar</p>
+
+<hr>
+
+<p>### PUT /reservas/{id}/aprovar</p>
+
+<p><strong>Handler:</strong> ReservaController::class, 'aprovar'</p>
+
+<p><strong>Description:</strong> Update a specific aprovar</p>
+
+<hr>
+
+<p>### PUT /reservas/{id}/reprovar</p>
+
+<p><strong>Handler:</strong> ReservaController::class, 'reprovar'</p>
+
+<p><strong>Description:</strong> Update a specific reprovar</p>
+
+<hr>
+
+
+    </div>
+  </main>
+  
+  <button id="dark-mode-toggle">🌓</button>
+
+  <script>
+    hljs.highlightAll();
+    
+    // Add method color classes
+    document.querySelectorAll('table td:first-child').forEach(cell => {
+      const method = cell.textContent.trim().toLowerCase();
+      const methods = method.split('/');
+      
+      if (methods.length) {
+        const mainMethod = methods[0].toLowerCase();
+        if (['get', 'post', 'put', 'patch', 'delete'].includes(mainMethod)) {
+          cell.innerHTML = `<span class="method method-${mainMethod}">${cell.textContent}</span>`;
+        }
+      }
+    });
+    
+    // Interactive search
+    const search = document.getElementById('search');
+    search.addEventListener('input', function() {
+      const value = this.value.toLowerCase();
+      const endpoints = document.querySelectorAll('.endpoint-container');
+      
+      endpoints.forEach(endpoint => {
+        const text = endpoint.textContent.toLowerCase();
+        const match = text.includes(value);
+        endpoint.style.display = match ? 'block' : 'none';
+      });
+    });
+    
+    // Toggle endpoint details
+    document.querySelectorAll('.endpoint-header').forEach(header => {
+      header.addEventListener('click', function() {
+        this.classList.toggle('active');
+        const content = this.nextElementSibling;
+        content.classList.toggle('active');
+      });
+    });
+    
+    // Try It functionality
+    document.querySelectorAll('.try-it').forEach(button => {
+      button.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const container = this.closest('.endpoint-container');
+        const content = container.querySelector('.endpoint-content');
+        
+        if (!content.classList.contains('active')) {
+          container.querySelector('.endpoint-header').click();
+        }
+        
+        // Create form if it doesn't exist
+        if (!container.querySelector('.try-it-form')) {
+          const method = container.getAttribute('data-method');
+          const endpoint = container.getAttribute('data-endpoint');
+          
+          const form = document.createElement('div');
+          form.className = 'try-it-form';
+          form.innerHTML = `
+            <h4>Test Request</h4>
+            <div class="form-group">
+              <label>URL</label>
+              <input type="text" class="url-input" value="${window.location.origin}${endpoint}" readonly>
+            </div>
+            ${method !== 'GET' ? `
+              <div class="form-group">
+                <label>Request Body (JSON)</label>
+                <textarea class="body-input">{}</textarea>
+              </div>
+            ` : ''}
+            <div class="form-group">
+              <button type="button" class="send-request">Send Request</button>
+            </div>
+            <div class="response-container">
+              <div class="response-header">
+                <span class="response-status"></span>
+                <span class="response-time"></span>
+              </div>
+              <div class="response-body">
+                <pre><code class="language-json response-code"></code></pre>
+              </div>
+            </div>
+          `;
+          
+          content.appendChild(form);
+          
+          // Add event listener to send button
+          form.querySelector('.send-request').addEventListener('click', async function() {
+            const urlInput = form.querySelector('.url-input');
+            const bodyInput = form.querySelector('.body-input');
+            const responseContainer = form.querySelector('.response-container');
+            const responseStatus = form.querySelector('.response-status');
+            const responseTime = form.querySelector('.response-time');
+            const responseCode = form.querySelector('.response-code');
+            
+            const url = urlInput.value;
+            const body = bodyInput ? bodyInput.value : null;
+            
+            const startTime = Date.now();
+            
+            try {
+              responseContainer.style.display = 'block';
+              responseStatus.textContent = 'Loading...';
+              responseTime.textContent = '';
+              responseCode.textContent = '';
+              
+              // Note: In a real implementation, you would make actual API calls
+              // For demo purposes, we're just simulating a response
+              const response = {
+                status: 200,
+                statusText: 'OK',
+                data: { 
+                  message: "This is a simulated response for demonstration.",
+                  method: method,
+                  url: url,
+                  receivedBody: body ? JSON.parse(body) : null
+                }
+              };
+              
+              const endTime = Date.now();
+              const time = endTime - startTime;
+              
+              setTimeout(() => {
+                responseStatus.textContent = `Status: ${response.status} ${response.statusText}`;
+                responseTime.textContent = `Time: ${time}ms`;
+                responseCode.textContent = JSON.stringify(response.data, null, 2);
+                hljs.highlightElement(responseCode);
+              }, 500); // Simulate network delay
+              
+            } catch (error) {
+              responseStatus.textContent = 'Error';
+              responseCode.textContent = error.toString();
+              hljs.highlightElement(responseCode);
+            }
+          });
+        }
+      });
+    });
+    
+    // Dark mode toggle
+    const darkModeToggle = document.getElementById('dark-mode-toggle');
+    darkModeToggle.addEventListener('click', function() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+    });
+    
+    // Check for saved dark mode preference
+    if (localStorage.getItem('darkMode') === 'true') {
+      document.body.classList.add('dark-mode');
+    }
+  </script>
+</body>
+</html>
+  

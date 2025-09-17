@@ -47,16 +47,33 @@ class AdmController extends Controller
 
     public function dashBoard(Request $request)
     {
+
         $status = $request->query('status', 'todas');
+        $query = DB::table('reservas')
+            ->join('usuarios', 'reservas.usuario_id', '=', 'usuarios.id')
+            ->join('equipamentos', 'reservas.equipamento_id', '=', 'equipamentos.id')
+            ->select(
+                'reservas.status as status',
+                'reservas.usuario_id as usuario_id',
+                'usuarios.nome_usuario as nome_usuario',
+                'equipamentos.nome_equipamento as nome_equipamento',
+                'reservas.data_reserva as data_reserva'
+            );
+        if ($status !== 'todas') {
+            $query->where('reservas.status', $status);
+        }
+
+        $reservas = $query->get();
+    
         // retorna as reservas feitas essa semana
         $inicio_semana = Carbon::now()->startOfWeek(); // segunda-feira
         $fim_semana    = Carbon::now()->endOfWeek();   // domingo
 
-        $reservas = DB::table('reservas')
+        $reservas1 = DB::table('reservas')
             ->where('status', 'Pendente')
             ->whereBetween('data_reserva', [$inicio_semana, $fim_semana])
             ->get();
-        $qtd_reservas = $reservas->count();
+        $qtd_reservas = $reservas1->count();
 
 
 
@@ -130,33 +147,27 @@ class AdmController extends Controller
             ->orderBy('punicoes.data_punicao', 'desc')
             ->first();
 
-        return view('adm.dashboard', [
-            'reservas' => $reservas,
-            'status' => $status,
-            'qtd_reservas' => 0,
-            'qtd_penalidades_ativas' => 0,
-            'qtd_tipo_penalidade' => 0,
-            'ultima_reserva' => null,
-            'qtd_reservas_mes_andamento' => 0,
-            'qtd_reservas_mes_concluida' => 0,
-            'qtd_reservas_mes_cancelada' => 0,
-            'ultima_penalidade' => null,
-            'ultimo_bloqueado' => null,
-        ]);
-    }
+        return view('adm.dashboard', compact(
+            'reservas',
+            'status',
+            'qtd_reservas',
+            'qtd_penalidades_ativas',
+            'qtd_tipo_penalidade',
+            'ultima_reserva',
+            'qtd_reservas_mes_andamento',
+            'qtd_reservas_mes_concluida' ,
+            'qtd_reservas_mes_cancelada',
+            'ultima_penalidade',
+            'ultimo_bloqueado',
+        ));}
+    
 
 
     public function inserirEquipamento(Request $request)
     {
 
 
-        /* $request->validate([
-            'nome_equipamento' => 'required|string|max:100',
-            'descricao_equipamento' => 'required|string|max:255',
-            'quantidade_equipamento' => 'required|integer',
-            'quantidade_disponivel_equipamento' => 'required|integer',
-            ]);
-            */
+   
         Adm::create([
             'nome_equipamento' => $request->nome_equipamento,
             'descricao_equipamento' => $request->descricao_equipamento,
@@ -169,7 +180,7 @@ class AdmController extends Controller
 
 
 
-    public function listarReservasDosUsuarios(){
+    /*public function listarReservasDosUsuarios(){
 
         $reservas = DB::table('reservas')
         ->join('usuarios', 'usuarios.id', '=', 'reservas.usuario_id')
@@ -177,7 +188,7 @@ class AdmController extends Controller
         ->select('usuarios.id', 'usuarios.nome_usuario', 'equipamentos.nome_equipamento', 'reservas.data_fim', 'reservas.status')
         ->get();
 
-        return view('adm.dashboard', compact('reservas'));
+        return view('adm.dashboard', compact('reservas_listagem'));
 
-    }
+    }*/
 }
