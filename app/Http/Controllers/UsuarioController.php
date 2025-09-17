@@ -113,6 +113,8 @@ class UsuarioController extends Controller
             'status'=> 'Pendente'
         ]);
 
+        $dataHoraAtual = date("H:i:s");
+
 
 
         if(!$reserva){
